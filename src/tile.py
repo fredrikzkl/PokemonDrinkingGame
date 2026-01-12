@@ -87,14 +87,15 @@ class Tile:
                     # Convert RGB to RGBA (add full opacity alpha channel)
                     tile_image = tile_image.convert("RGBA")
 
-                # Resize image to fill tile width (accounting for borders)
-                target_width = self.width - (self.border_width * 2)
+                # Resize image - make it smaller to position higher, don't fill full width
+                # Use 80% of width to leave room and make positioning more noticeable
+                target_width = int((self.width - (self.border_width * 2)) * 0.8)
 
                 # Calculate height to maintain aspect ratio
                 aspect_ratio = tile_image.height / tile_image.width
                 target_height = int(target_width * aspect_ratio)
 
-                # Resize image to fill width
+                # Resize image
                 tile_image = tile_image.resize(
                     (target_width, target_height), Image.Resampling.LANCZOS
                 )
@@ -102,11 +103,13 @@ class Tile:
                 # Center horizontally, position vertically
                 x_offset = (self.width - tile_image.width) // 2
 
-                # Position image below header if present, otherwise at top
+                # Position image at the very top (to account for white padding at bottom of sprites)
                 if self.header:
-                    y_offset = self.border_width + header_height  # Below header
+                    # Position right after header
+                    y_offset = self.border_width + header_height - 5  # Close to header
                 else:
-                    y_offset = self.border_width  # Right at the border, at the top
+                    # Position at the very top
+                    y_offset = self.border_width  # Right at border
 
                 # Paste with alpha channel support (transparency preserved)
                 if tile_image.mode == "RGBA":
