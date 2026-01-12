@@ -1,0 +1,89 @@
+tiles:
+  - name: Pallet Town
+    header: "Pallet Town"
+    text: "Pick one, dude"
+
+  - name: Rattata
+    text: "Rattata used Tackle! ..wait, you seriously rolled a 1? You fainted. Finish your drink"
+    pokeApiImage: "rattata"
+
+  - name: Pidgey
+    text: "Pidgey used Quick Attack! Use that quickness to to give 1 drink, and take an extra turn"
+    pokeApiImage: "pidgey"
+
+  # Viridian Forest
+  - name: Virdian Forest
+    header: "Virdian Forest"
+    text: "Try not to get lost! When you roll to move, if you roll 5 or 6, drink 1 and return here"
+    background_color: "viridian_forest"
+
+  - name: Caterpie
+    text: "Caterpie used String Shot! All players may only move half of what the roll on their next turn (round up)"
+    pokeApiImage: "caterpie"
+    background_color: "viridian_forest"
+
+  - name: Metapod
+    text: "A hard bro appeared! --TODO--"
+    pokeApiImage: "metapod"
+    background_color: "viridian_forest"
+
+  - name: Weedle
+    text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
+    pokeApiImage: "weedle"
+    background_color: "viridian_forest"
+  # End forest
+
+  - name: Pewter Gym
+    header: Pewter Gym
+    text: "Roll a die.\nEven: Give a drink\nOdd: Take a drink"
+    background_color: "gym"
+
+  - name: Poke Mart
+    header: PokeMart
+    text: "Purchasing options:\n(2) Potion: Block a drinking request\n(4) Repel: Repel a pokemon"
+
+  - name: Gary
+    header: Gary
+    text: "Roll a die. Drink half (round up). What is this guys deal, anyway?"
+
+  - name: Paras
+    text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
+    pokeApiImage: "paras"
+
+  # Rock Tunnel
+  - name: Rock Tunnel
+    header: "Rock Tunnel"
+    text: "This cave is dark and annoying. If you at any point finish your drink while you are in the cave, fill it up and return here. Dangerous to continue without supplies!"
+    background_color: "rock_tunnel"
+
+  - name: Zubat
+    text: "Zubats... they're... they're everywhere! Take a drink. Next turn, if you roll 1 or 2, stay here and take a drink!"
+    pokeApiImage: "zubat"
+    background_color: "rock_tunnel"
+
+  - name: Geodude
+    text: "Geodude used Magnitude!\nRoll the die. Drink that many. Next player drink one less. Continue until zero"
+    pokeApiImage: "geodude"
+    background_color: "rock_tunnel"
+
+  - name: Diglett
+    text: "Diglett used Dig!\nIf your drink is below 50%, finish it. Otherwise, drink down to 50%"
+    pokeApiImage: "diglett"
+    background_color: "rock_tunnel"
+
+  - name: idea
+    text: "TODO!\nRoll a die\nOptional: Move that many squares, but also drink that many"
+
+    # Missing no
+    # Ha denne 4 tiles forran siste i rock tunnel, som gjør at hvis du feks ruller 5, går du 5 bak, og
+  - name: MissingNo
+    text: "A wild Missingno!\nThe game is glitching! Next turn, move backwards instead of forward"
+    pokeApiImage: "missingno" # Does not exist
+
+  - name: Gengar
+    text: "Gengar used Hypnosis! Smile or laugh until your next turn, you drink 6"
+    pokeApiImage: "gengar"
+
+  - name: Alakazam
+    text: "Alakazam used Phsycic! One of your adjacent players rolls a die. If you correctly guess what he rolled, new turn. Otherwise, drink 4"
+    pokeApiImage: "alakazam"

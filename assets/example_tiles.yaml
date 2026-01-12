@@ -1,0 +1,32 @@
+# Example file
+tiles:
+  # Start tile - green background
+  - name: start
+    text: "START"
+    background_color: [200, 255, 200] # Light green
+    text_color: [0, 100, 0] # Dark green
+    width: 200
+    height: 200
+
+  # Go tile - red background
+  - name: go
+    text: "GO"
+    background_color: [255, 200, 200] # Light red
+    text_color: [100, 0, 0] # Dark red
+    width: 200
+    height: 200
+
+  # More tiles...
+  - name: tile_1
+    text: "Tile 1"
+    background_color: [200, 200, 255] # Light blue
+    text_color: [0, 0, 100]
+    width: 200
+    height: 200
+
+  - name: tile_2
+    text: "Tile 2"
+    background_color: [240, 240, 240] # Light gray
+    text_color: [50, 50, 50]
+    width: 200
+    height: 200
