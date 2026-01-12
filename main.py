@@ -1,10 +1,10 @@
 from src import BoardGameEngine
-from tiles.load_tiles import load_tiles_from_yaml
+from assets.load_tiles import load_tiles_from_yaml
 import os
 import sys
 
 
-def create_board_from_yaml(yaml_file: str = "tiles/tiles.yaml", board_cols: int = 4, board_rows: int = 4):
+def create_board_from_yaml(yaml_file: str = "assets/tiles.yaml", board_cols: int = 4, board_rows: int = 4):
     """Create a board using tiles defined in a YAML file."""
     
     # Create output directory
@@ -55,5 +55,5 @@ if __name__ == "__main__":
         yaml_file = sys.argv[1]
         create_board_from_yaml(yaml_file)
     else:
-        # Default: use tiles/tiles.yaml
+        # Default: use assets/tiles.yaml
         create_board_from_yaml()

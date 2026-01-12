@@ -31,6 +31,11 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
     if not os.path.isabs(yaml_path):
         project_root = Path(__file__).parent.parent
         yaml_path = project_root / yaml_path
+        # If file doesn't exist, try assets/ directory
+        if not yaml_path.exists() and not str(yaml_path).startswith('assets'):
+            assets_path = project_root / 'assets' / Path(yaml_path).name
+            if assets_path.exists():
+                yaml_path = assets_path
     
     with open(yaml_path, 'r') as f:
         data = yaml.safe_load(f)
@@ -95,6 +100,7 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
         tile = Tile(
             width=tile_def.get('width', 200),
             height=tile_def.get('height', 200),
+            header=tile_def.get('header'),
             text=tile_def.get('text'),
             image_path=image_path,
             background_color=bg_color if isinstance(bg_color, tuple) else (255, 255, 255),
@@ -177,6 +183,7 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
             tile = Tile(
                 width=tile_def.get('width', 200),
                 height=tile_def.get('height', 200),
+                header=tile_def.get('header'),
                 text=tile_def.get('text'),
                 image_path=image_path,
                 background_color=bg_color if isinstance(bg_color, tuple) else (255, 255, 255),
