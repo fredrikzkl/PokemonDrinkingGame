@@ -10,6 +10,8 @@ class Tile:
         header: Optional[str] = None,
         text: Optional[str] = None,
         image_path: Optional[str] = None,
+        image_scale: float = 0.8,
+        image_margin_top: Optional[int] = None,
         background_color: Tuple[int, int, int] | str = (255, 255, 255),
         text_color: Tuple[int, int, int] = (0, 0, 0),
         border_color: Tuple[int, int, int] = (0, 0, 0),
@@ -20,6 +22,8 @@ class Tile:
         self.header = header
         self.text = text
         self.image_path = image_path
+        self.image_scale = image_scale
+        self.image_margin_top = image_margin_top
         self.background_color = background_color
         self.text_color = text_color
         self.border_color = border_color
@@ -44,31 +48,33 @@ class Tile:
             try:
                 # Use a larger, bolder font for header
                 try:
-                    header_font_size = min(self.width, self.height) // 8  # Larger than text
+                    header_font_size = (
+                        min(self.width, self.height) // 8
+                    )  # Larger than text
                     header_font = ImageFont.truetype(
                         "/System/Library/Fonts/Helvetica.ttc", header_font_size
                     )
                 except:
                     header_font = ImageFont.load_default()
-                
+
                 # Calculate header height
                 header_bbox = draw.textbbox((0, 0), self.header, font=header_font)
                 header_height = header_bbox[3] - header_bbox[1]
-                header_y = self.border_width + 10  # More padding from border/top
-                
+                header_y = self.border_width + 20  # More padding from border/top
+
                 # Center header horizontally
                 header_bbox = draw.textbbox((0, 0), self.header, font=header_font)
                 header_width = header_bbox[2] - header_bbox[0]
                 header_x = (self.width - header_width) // 2
-                
+
                 # Draw header
                 draw.text(
                     (header_x, header_y),
                     self.header,
                     fill=self.text_color,
-                    font=header_font
+                    font=header_font,
                 )
-                
+
                 # Add some spacing after header
                 header_height += 10
             except Exception as e:
@@ -87,9 +93,9 @@ class Tile:
                     # Convert RGB to RGBA (add full opacity alpha channel)
                     tile_image = tile_image.convert("RGBA")
 
-                # Resize image - make it smaller to position higher, don't fill full width
-                # Use 80% of width to leave room and make positioning more noticeable
-                target_width = int((self.width - (self.border_width * 2)) * 0.8)
+                # Resize image using scale parameter
+                base_width = self.width - (self.border_width * 2)
+                target_width = int(base_width * self.image_scale)
 
                 # Calculate height to maintain aspect ratio
                 aspect_ratio = tile_image.height / tile_image.width
@@ -103,8 +109,11 @@ class Tile:
                 # Center horizontally, position vertically
                 x_offset = (self.width - tile_image.width) // 2
 
-                # Position image at the very top (to account for white padding at bottom of sprites)
-                if self.header:
+                # Position image using margin_top parameter or default behavior
+                if self.image_margin_top is not None:
+                    # Use explicit margin_top value
+                    y_offset = self.image_margin_top
+                elif self.header:
                     # Position right after header
                     y_offset = self.border_width + header_height - 5  # Close to header
                 else:
@@ -142,13 +151,17 @@ class Tile:
 
                 # Account for header space
                 header_space = header_height if self.header else 0
-                
+
                 # If image exists, reserve space at top; text goes at bottom
                 if self.image_path:
                     # Reserve space for image at top
                     image_area_height = self.height // 2
                     available_height = (
-                        self.height - image_area_height - padding - self.border_width - header_space
+                        self.height
+                        - image_area_height
+                        - padding
+                        - self.border_width
+                        - header_space
                     )
                     text_y_start = image_area_height + padding
                 else:

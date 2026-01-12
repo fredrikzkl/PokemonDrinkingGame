@@ -53,13 +53,14 @@ tiles:
   # Rock Tunnel
   - name: Rock Tunnel
     header: "Rock Tunnel"
-    text: "This cave is dark and annoying. If you at any point finish your drink while you are in the cave, fill it up and return here. Dangerous to continue without supplies!"
+    text: "Dangerous to continue without supplies! If you finish your drink, at any point, while you are in the cave, fill it up and return here."
     background_color: "rock_tunnel"
 
   - name: Zubat
     text: "Zubats... they're... they're everywhere! Take a drink. Next turn, if you roll 1 or 2, stay here and take a drink!"
     pokeApiImage: "zubat"
     background_color: "rock_tunnel"
+    image_margin_top: -20
 
   - name: Geodude
     text: "Geodude used Magnitude!\nRoll the die. Drink that many. Next player drink one less. Continue until zero"
@@ -83,7 +84,9 @@ tiles:
   - name: Gengar
     text: "Gengar used Hypnosis! Smile or laugh until your next turn, you drink 6"
     pokeApiImage: "gengar"
+    image_scale: 0.8
 
   - name: Alakazam
     text: "Alakazam used Phsycic! One of your adjacent players rolls a die. If you correctly guess what he rolled, new turn. Otherwise, drink 4"
     pokeApiImage: "alakazam"
+    image_scale: 0.65
