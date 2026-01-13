@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 from typing import Optional, Tuple
+from pathlib import Path
 
 
 class Tile:
@@ -29,6 +30,44 @@ class Tile:
         self.border_color = border_color
         self.border_width = border_width
 
+    def _get_font(self, size: int, font_type: str = "text") -> ImageFont.ImageFont:
+        """
+        Get font based on type: header uses gbboot.ttf, text uses pokemon_classic.ttf.
+
+        Args:
+            size: Font size in points
+            font_type: "header" or "text" (default: "text")
+
+        Returns:
+            PIL ImageFont object
+        """
+        project_root = Path(__file__).parent.parent
+        fonts_dir = project_root / "assets" / "fonts"
+
+        if font_type == "header":
+            # Header uses gbboot.ttf
+            font_path = fonts_dir / "gbboot.ttf"
+            if font_path.exists():
+                try:
+                    return ImageFont.truetype(str(font_path), size)
+                except Exception as e:
+                    print(f"Warning: Could not load gbboot.ttf font: {e}")
+        else:
+            # Text uses pokemon_classic.ttf
+            font_path = fonts_dir / "gil.ttf"
+            if font_path.exists():
+                try:
+                    return ImageFont.truetype(str(font_path), size)
+                except Exception as e:
+                    print(f"Warning: Could not load pokemon_classic.ttf font: {e}")
+
+        # Fallback to system font
+        try:
+            return ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", size)
+        except Exception:
+            # Final fallback to default font
+            return ImageFont.load_default()
+
     def render(self) -> Image.Image:
         # Create base image
         img = Image.new("RGB", (self.width, self.height), self.background_color)
@@ -46,16 +85,9 @@ class Tile:
         header_height = 0
         if self.header:
             try:
-                # Use a larger, bolder font for header
-                try:
-                    header_font_size = (
-                        min(self.width, self.height) // 8
-                    )  # Larger than text
-                    header_font = ImageFont.truetype(
-                        "/System/Library/Fonts/Helvetica.ttc", header_font_size
-                    )
-                except:
-                    header_font = ImageFont.load_default()
+                # Use gbboot.ttf for header
+                header_font_size = min(self.width, self.height) // 8
+                header_font = self._get_font(header_font_size, font_type="header")
 
                 # Calculate header height
                 header_bbox = draw.textbbox((0, 0), self.header, font=header_font)
@@ -67,7 +99,7 @@ class Tile:
                 header_width = header_bbox[2] - header_bbox[0]
                 header_x = (self.width - header_width) // 2
 
-                # Draw header
+                # Then draw main text on top
                 draw.text(
                     (header_x, header_y),
                     self.header,
@@ -79,6 +111,9 @@ class Tile:
                 header_height += 10
             except Exception as e:
                 print(f"Warning: Could not render header: {e}")
+                import traceback
+
+                traceback.print_exc()
 
         # Load and paste image if provided
         if self.image_path:
@@ -114,11 +149,14 @@ class Tile:
                     # Use explicit margin_top value
                     y_offset = self.image_margin_top
                 elif self.header:
-                    # Position right after header
-                    y_offset = self.border_width + header_height - 5  # Close to header
+                    # Default: position right after header with -10 margin
+                    y_offset = self.border_width + header_height - 10
                 else:
-                    # Position at the very top
-                    y_offset = self.border_width  # Right at border
+                    # Default: position at top with -10 margin
+                    y_offset = self.border_width - 10
+
+                # Ensure y_offset doesn't go negative (clamp to 0 minimum) and is an integer
+                y_offset = max(0, int(y_offset))
 
                 # Paste with alpha channel support (transparency preserved)
                 if tile_image.mode == "RGBA":
@@ -134,16 +172,8 @@ class Tile:
         # Draw text if provided
         if self.text:
             try:
-                # Try to use a nice font, fallback to default if not available
-                try:
-                    font_size = (
-                        min(self.width, self.height) // 12
-                    )  # Slightly smaller for wrapping
-                    font = ImageFont.truetype(
-                        "/System/Library/Fonts/Helvetica.ttc", font_size
-                    )
-                except:
-                    font = ImageFont.load_default()
+                font_size = min(self.width, self.height) // 13
+                font = self._get_font(font_size, font_type="text")
 
                 # Calculate available space for text
                 padding = 10
@@ -171,28 +201,32 @@ class Tile:
                     )
                     text_y_start = padding + self.border_width + header_space
 
-                # Wrap text to fit within available width
-                words = self.text.split()
+                # First split by explicit newlines (\n), then wrap each paragraph
+                paragraphs = self.text.split("\n")
                 lines = []
-                current_line = []
 
-                for word in words:
-                    # Test if adding this word would exceed width
-                    test_line = " ".join(current_line + [word])
-                    bbox = draw.textbbox((0, 0), test_line, font=font)
-                    test_width = bbox[2] - bbox[0]
+                for paragraph in paragraphs:
+                    # Wrap each paragraph to fit within available width
+                    words = paragraph.split()
+                    current_line = []
 
-                    if test_width <= available_width:
-                        current_line.append(word)
-                    else:
-                        # Current line is full, start a new one
-                        if current_line:
-                            lines.append(" ".join(current_line))
-                        current_line = [word]
+                    for word in words:
+                        # Test if adding this word would exceed width
+                        test_line = " ".join(current_line + [word])
+                        bbox = draw.textbbox((0, 0), test_line, font=font)
+                        test_width = bbox[2] - bbox[0]
 
-                # Add the last line
-                if current_line:
-                    lines.append(" ".join(current_line))
+                        if test_width <= available_width:
+                            current_line.append(word)
+                        else:
+                            # Current line is full, start a new one
+                            if current_line:
+                                lines.append(" ".join(current_line))
+                            current_line = [word]
+
+                    # Add the last line of this paragraph
+                    if current_line:
+                        lines.append(" ".join(current_line))
 
                 # Calculate total text height
                 line_height = (

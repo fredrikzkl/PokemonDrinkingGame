@@ -22,8 +22,13 @@ tiles:
     pokeApiImage: "caterpie"
     background_color: "viridian_forest"
 
+  - name: Pikachu
+    text: "-- TODO -- "
+    pokeApiImage: "pikachu"
+    background_color: "viridian_forest"
+
   - name: Metapod
-    text: "A hard bro appeared! --TODO--"
+    text: "A hard bro appeared! Drink 2, and reduce the amount you drink by half (round up) until your next turn"
     pokeApiImage: "metapod"
     background_color: "viridian_forest"
 
@@ -31,24 +36,73 @@ tiles:
     text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
     pokeApiImage: "weedle"
     background_color: "viridian_forest"
-  # End forest
 
+  # Brock - Onix
   - name: Pewter Gym
     header: Pewter Gym
     text: "Roll a die.\nEven: Give a drink\nOdd: Take a drink"
     background_color: "gym"
 
+  - name: Clefairy
+    text: "Caferiy used --TODO--"
+    pokeApiImage: "clefairy"
+
+  # Get fossil
+  - name: Super Nerd
+    text: "Oh no, it's the super nerd!"
+
+  - name: Paras
+    text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
+    pokeApiImage: "paras"
+
+  # Cerulean City
   - name: Poke Mart
     header: PokeMart
-    text: "Purchasing options:\n(2) Potion: Block a drinking request\n(4) Repel: Repel a pokemon"
+    text: "Purchasing options:\n(2) Potion: Block a drinking request\n(4) Repel: Ignore the effect of a pokemon you encounter"
 
   - name: Gary
     header: Gary
     text: "Roll a die. Drink half (round up). What is this guys deal, anyway?"
 
-  - name: Paras
-    text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
-    pokeApiImage: "paras"
+  # Pokecenter?
+
+  # Misty - Starmie
+  - name: Cerulean Gym
+    header: Cerulean Gym
+    text: "TODO"
+    background_color: "gym"
+
+  - name: Slowpoke
+    text: "For the first one here, make up a gesture. For the rest of the game, when you do it, the last to mimic takes a drink"
+    pokeApiImage: "slowpoke"
+    image_margin_top: -10
+
+  - name: SS Anne
+    header: SS Anne
+    text: "Enjoy your cruise! Roll a die. You lose that many turns (divided by 2, round up). Roll again. Drink that number each lost turn."
+
+  - name: Vermilion Gym
+    header: Vermilion Gym
+    text: "TODO"
+    background_color: "gym"
+
+  - name: Magikarp
+    text: "Magikarp used Splash!\nBut nothing happened..."
+    pokeApiImage: "magikarp"
+    image_scale: 1.1
+    image_margin_top: -20
+
+  - name: Tentacool
+    text: "Tentacool used Constrict!\nGrab your drink and drink 3. You are not allowed to let go of your drink until it's finished."
+    pokeApiImage: "tentacool"
+    image_scale: 0.85
+    image_margin_top: -10
+
+  - name: Spearow
+    text: "Spearow used Pluck!\nLose your next turn. Pick a player. Give 4 and steal 1 item."
+    pokeApiImage: "spearow"
+    image_scale: 1.2
+    image_margin_top: -50
 
   # Rock Tunnel
   - name: Rock Tunnel
@@ -60,7 +114,7 @@ tiles:
     text: "Zubats... they're... they're everywhere! Take a drink. Next turn, if you roll 1 or 2, stay here and take a drink!"
     pokeApiImage: "zubat"
     background_color: "rock_tunnel"
-    image_margin_top: -20
+    image_margin_top: -10
 
   - name: Geodude
     text: "Geodude used Magnitude!\nRoll the die. Drink that many. Next player drink one less. Continue until zero"
