@@ -27,14 +27,19 @@ tiles:
     pokeApiImage: "pikachu"
     background_color: "viridian_forest"
 
+  - name: Weedle
+    text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
+    pokeApiImage: "weedle"
+    background_color: "viridian_forest"
+
   - name: Metapod
     text: "A hard bro appeared! Drink 2, and reduce the amount you drink by half (round up) until your next turn"
     pokeApiImage: "metapod"
     background_color: "viridian_forest"
 
-  - name: Weedle
-    text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
-    pokeApiImage: "weedle"
+  - name: Beedrill
+    text: "Beedrill used Twinnneedle!\nPick two players to drink 2"
+    pokeApiImage: "beedrill"
     background_color: "viridian_forest"
 
   # Brock - Onix
@@ -49,7 +54,7 @@ tiles:
 
   # Get fossil
   - name: Super Nerd
-    text: "Oh no, it's the super nerd!"
+    text: "Oh no, it's the super nerd! --TODO-- Get fossile"
 
   - name: Paras
     text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
@@ -57,14 +62,16 @@ tiles:
 
   # Cerulean City
   - name: Poke Mart
-    header: PokeMart
+    header: Poke Mart
     text: "Purchasing options:\n(2) Potion: Block a drinking request\n(4) Repel: Ignore the effect of a pokemon you encounter"
 
   - name: Gary
     header: Gary
     text: "Roll a die. Drink half (round up). What is this guys deal, anyway?"
 
-  # Pokecenter?
+  - name: Poke Center
+    header: Poke Center
+    text: "Bro need some healing! Optional: Replace your current drink with water. Drink 4"
 
   # Misty - Starmie
   - name: Cerulean Gym
@@ -81,16 +88,15 @@ tiles:
     header: SS Anne
     text: "Enjoy your cruise! Roll a die. You lose that many turns (divided by 2, round up). Roll again. Drink that number each lost turn."
 
-  - name: Vermilion Gym
-    header: Vermilion Gym
-    text: "TODO"
-    background_color: "gym"
-
   - name: Magikarp
     text: "Magikarp used Splash!\nBut nothing happened..."
     pokeApiImage: "magikarp"
     image_scale: 1.1
-    image_margin_top: -20
+    image_margin_top: -30
+
+  - name: Pokemon Stadium
+    header: "Stadium"
+    text: "Challenge a player to a trainer battle. If you win, swap places"
 
   - name: Tentacool
     text: "Tentacool used Constrict!\nGrab your drink and drink 3. You are not allowed to let go of your drink until it's finished."
@@ -104,6 +110,11 @@ tiles:
     image_scale: 1.2
     image_margin_top: -50
 
+  - name: Vermilion Gym
+    header: Vermilion Gym
+    text: "TODO"
+    background_color: "gym"
+
   # Rock Tunnel
   - name: Rock Tunnel
     header: "Rock Tunnel"
@@ -116,6 +127,10 @@ tiles:
     background_color: "rock_tunnel"
     image_margin_top: -10
 
+  - name: got_lost
+    text: "You got lost... Backtrack one square"
+    background_color: "rock_tunnel"
+
   - name: Geodude
     text: "Geodude used Magnitude!\nRoll the die. Drink that many. Next player drink one less. Continue until zero"
     pokeApiImage: "geodude"
@@ -125,6 +140,29 @@ tiles:
     text: "Diglett used Dig!\nIf your drink is below 50%, finish it. Otherwise, drink down to 50%"
     pokeApiImage: "diglett"
     background_color: "rock_tunnel"
+    image_scale: 1.2
+
+  - name: got_lost_again
+    text: "Dude, you got lost again? Move back 1 square? Try to focus, please"
+    background_color: "rock_tunnel"
+
+    # One square lavender town
+  - name: lavender_town
+    header: "Lavender Town"
+    text: "Finally out of that stupid cave"
+
+  - name: pokemon_tower
+    header: Pokemon Tower
+    text: "TODO: Obtain Flute?"
+    background_color: "pokemon_tower"
+
+  - name: channeler
+    text: "A possesed Channeler. Now you're possesed to! While you are in this space, anyone may make you get them a drink"
+    background_color: "pokemon_tower"
+
+  - name: pokemon_tower
+    text: "TODO: Obtain Flute?"
+    background_color: "pokemon_tower"
 
   - name: idea
     text: "TODO!\nRoll a die\nOptional: Move that many squares, but also drink that many"
@@ -141,6 +179,6 @@ tiles:
     image_scale: 0.8
 
   - name: Alakazam
-    text: "Alakazam used Phsycic! One of your adjacent players rolls a die. If you correctly guess what he rolled, new turn. Otherwise, drink 4"
+    text: "Alakazam used Phsycic! Player to your left rolls a die. If you correctly guess the number on the die, new turn. Otherwise, drink 4"
     pokeApiImage: "alakazam"
-    image_scale: 0.65
+    image_scale: 0.85

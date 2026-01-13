@@ -155,8 +155,8 @@ class Tile:
                     # Default: position at top with -10 margin
                     y_offset = self.border_width - 10
 
-                # Ensure y_offset doesn't go negative (clamp to 0 minimum) and is an integer
-                y_offset = max(0, int(y_offset))
+                # Convert to integer (allow negative values for positioning above border)
+                y_offset = int(y_offset)
 
                 # Paste with alpha channel support (transparency preserved)
                 if tile_image.mode == "RGBA":
