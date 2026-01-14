@@ -44,8 +44,8 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
     for tile_def in data.get('tiles', []):
         # Handle PokeAPI images first (takes precedence over image_path)
         image_path = None
-        if 'pokeApiImage' in tile_def:
-            pokemon_name = tile_def['pokeApiImage']
+        if 'poke_api_image' in tile_def:
+            pokemon_name = tile_def['poke_api_image']
             cached_path = fetch_pokemon_image(pokemon_name)
             if cached_path:
                 image_path = cached_path
@@ -142,8 +142,8 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
             
             # Handle PokeAPI images first (takes precedence over image_path)
             image_path = None
-            if 'pokeApiImage' in tile_def:
-                pokemon_name = tile_def['pokeApiImage']
+            if 'poke_api_image' in tile_def:
+                pokemon_name = tile_def['poke_api_image']
                 cached_path = fetch_pokemon_image(pokemon_name)
                 if cached_path:
                     image_path = cached_path

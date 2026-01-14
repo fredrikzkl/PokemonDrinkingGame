@@ -8,11 +8,11 @@ tiles:
 
   - name: Rattata
     text: "Rattata used Tackle! ..wait, you seriously rolled a 1? You fainted. Finish your drink"
-    pokeApiImage: "rattata"
+    poke_api_image: "rattata"
 
   - name: Pidgey
     text: "Pidgey used Quick Attack! Use that quickness to to give 1 drink, and take an extra turn"
-    pokeApiImage: "pidgey"
+    poke_api_image: "pidgey"
 
   # Viridian Forest
   - name: Virdian Forest
@@ -22,27 +22,27 @@ tiles:
 
   - name: Caterpie
     text: "Caterpie used String Shot! All players may only move half of what the roll on their next turn (round up)"
-    pokeApiImage: "caterpie"
+    poke_api_image: "caterpie"
     background_color: "viridian_forest"
 
   - name: Pikachu
     text: "-- TODO -- "
-    pokeApiImage: "pikachu"
+    poke_api_image: "pikachu"
     background_color: "viridian_forest"
 
   - name: Weedle
     text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
-    pokeApiImage: "weedle"
+    poke_api_image: "weedle"
     background_color: "viridian_forest"
 
   - name: Metapod
     text: "A hard bro appeared! Drink 2, and reduce the amount you drink by half (round up) until your next turn"
-    pokeApiImage: "metapod"
+    poke_api_image: "metapod"
     background_color: "viridian_forest"
 
   - name: Beedrill
     text: "Beedrill used Twinnneedle!\nPick two players to drink 2"
-    pokeApiImage: "beedrill"
+    poke_api_image: "beedrill"
     background_color: "viridian_forest"
 
   # Brock - Onix (Rock Type)
@@ -54,7 +54,7 @@ tiles:
 
   - name: Clefairy
     text: "Caferiy used --TODO--"
-    pokeApiImage: "clefairy"
+    poke_api_image: "clefairy"
 
   # Get fossil
   - name: Super Nerd
@@ -62,7 +62,7 @@ tiles:
 
   - name: Paras
     text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
-    pokeApiImage: "paras"
+    poke_api_image: "paras"
 
   # Cerulean City
   - name: Poke Mart
@@ -86,7 +86,7 @@ tiles:
 
   - name: Slowpoke
     text: "For the first one here, make up a gesture. For the rest of the game, when you do it, the last to mimic takes a drink"
-    pokeApiImage: "slowpoke"
+    poke_api_image: "slowpoke"
     image_margin_top: -10
 
   - name: SS Anne
@@ -95,7 +95,7 @@ tiles:
 
   - name: Magikarp
     text: "Magikarp used Splash!\nBut nothing happened..."
-    pokeApiImage: "magikarp"
+    poke_api_image: "magikarp"
     image_scale: 1.1
     image_margin_top: -30
 
@@ -105,13 +105,13 @@ tiles:
 
   - name: Tentacool
     text: "Tentacool used Constrict!\nGrab your drink and drink 3. You are not allowed to let go of your drink until it's finished."
-    pokeApiImage: "tentacool"
+    poke_api_image: "tentacool"
     image_scale: 0.85
     image_margin_top: -10
 
   - name: Spearow
     text: "Spearow used Pluck!\nLose your next turn. Pick a player. Give 4 and steal 1 item."
-    pokeApiImage: "spearow"
+    poke_api_image: "spearow"
     image_scale: 1.2
     image_margin_top: -50
 
@@ -129,7 +129,7 @@ tiles:
 
   - name: Zubat
     text: "Zubats... they're... they're everywhere! Take a drink. Next turn, if you roll 1 or 2, stay here and take a drink!"
-    pokeApiImage: "zubat"
+    poke_api_image: "zubat"
     background_color: "rock_tunnel"
     image_margin_top: -10
 
@@ -139,12 +139,12 @@ tiles:
 
   - name: Geodude
     text: "Geodude used Magnitude!\nRoll the die. Drink that many. Next player drink one less. Continue until zero"
-    pokeApiImage: "geodude"
+    poke_api_image: "geodude"
     background_color: "rock_tunnel"
 
   - name: Diglett
     text: "Diglett used Dig!\nIf your drink is below 50%, finish it. Otherwise, drink down to 50%"
-    pokeApiImage: "diglett"
+    poke_api_image: "diglett"
     background_color: "rock_tunnel"
     image_scale: 1.2
 
@@ -168,12 +168,12 @@ tiles:
 
   - name: gastly
     text: "Gaslty uses Confuse Ray!\nYou are now confused for two rounds"
-    pokeApiImage: "gastly"
+    poke_api_image: "gastly"
     background_color: "pokemon_tower"
 
   - name: Gengar
     text: "Gengar used Hypnosis! Smile or laugh until your next turn, you drink 6"
-    pokeApiImage: "gengar"
+    poke_api_image: "gengar"
     background_color: "pokemon_tower"
     image_scale: 0.8
 
@@ -191,7 +191,7 @@ tiles:
 
   - name: snorlax
     text: "A sleeping snorlax!\nFlute: Skip\nOtherwise, start singing a song! Anyone joining, avoids drinking 2. If no one joins, you solely drink 4."
-    pokeApiImage: "snorlax"
+    poke_api_image: "snorlax"
     image_scale: 0.8
 
     # Erika, Grass
@@ -229,34 +229,34 @@ tiles:
 
   - name: Tauros
     text: A wild Taurus appeared... but instantly fled. Drink 3 for not being quick enough
-    pokeApiImage: tauros
+    poke_api_image: tauros
 
   - name: chansey
     text: todo
     background_color: safari_zone
-    pokeApiImage: chansey
+    poke_api_image: chansey
 
     # Missing no
     # Ha denne 4 steg forran siste i rock tunnel, som gjør at hvis du feks ruller 5, går du 5 bak, og
   - name: MissingNo
     text: "A wild Missingno!\nThe game is glitching! Next turn, move backwards instead of forward"
-    pokeApiImage: "missingno" # Does not exist
+    poke_api_image: "missingno" # Does not exist
 
     # Ideas
 
   - name: pokeball
     text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use it's move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
-    pokeApiImage: "pokeball"
+    poke_api_image: "pokeball"
 
   - name: golem
     text: "Golem used Earthquake!\nEvery player must drink 2 and move 2 squares back"
-    pokeApiImage: "golem"
+    poke_api_image: "golem"
 
   - name: ditto
     text: "Ditto used Transform!\nSelect a move from any Pokmon you've passed. You must decide within 60 seconds, or Ditto flees"
-    pokeApiImage: "ditto"
+    poke_api_image: "ditto"
 
   - name: Alakazam
     text: "Alakazam used Phsycic! Player to your left rolls a die. If you correctly guess the number on the die, new turn. Otherwise, drink 4"
-    pokeApiImage: "alakazam"
+    poke_api_image: "alakazam"
     image_scale: 0.85
