@@ -7,6 +7,8 @@ COLORS = {
     "viridian_forest": (120, 192, 120),
     "rock_tunnel": (200, 176, 112),
     "pokemon_tower": (216, 160, 208),
+    "silph_co": (144, 176, 224),
+    "safari_zone": (184, 192, 88),
 }
 
 # Text colors
