@@ -229,12 +229,99 @@ tiles:
 
   - name: Tauros
     text: A wild Taurus appeared... but instantly fled. Drink 3 for not being quick enough
+    background_color: safari_zone
     poke_api_image: tauros
 
   - name: chansey
     text: todo
     background_color: safari_zone
     poke_api_image: chansey
+
+  - name: gloom
+    text: "Gloom "
+    poke_api_image: gloom
+
+  # Fuchsia city
+
+  - name: muk
+    text: "Muk used Sludge Bomb!\nHave every player combine their drinks in a glass, and finish the drink!"
+    poke_api_image: muk
+
+  - name: fuchsia_gym
+    header: Fuchsia Gym
+    text: todo
+    background_color: gym
+
+  - name: electrabuzz
+    text: "Electrabuzz used Thunder Punch!\nYou're paralyzed; miss your next turn"
+    poke_api_image: electrabuzz
+
+  - name: seafoam_islands
+    header: Seafoam Islands
+    text: todo
+    background_color: seafoam_islands
+
+  - name: dewgong
+    text: "Dewgong used Whirlpool!\nEveryone takes a drink, and reverse the turn order!"
+    poke_api_image: dewgong
+    background_color: seafoam_islands
+
+  - name: slowbro
+    text: "Slowbro used TODO! Positive effect"
+    poke_api_image: slowbro
+    background_color: seafoam_islands
+
+  - name: articuno
+    text: Articuno used TODO!
+    poke_api_image: articuno
+    background_color: seafoam_islands
+
+  - name: pokemon_lab
+    header: Cinnabar Lab
+    text: "TODO: Big bonus if you have the fossile"
+
+  - name: cinnabar_gym
+    header: Cannabar Gym
+    text: todo
+    background_color: gym
+
+  - name: lickitung
+    text: Lickitung used Lick! Give 2, and stick your tounge out until your next turn.
+    poke_api_image: lickitung
+
+  # Power Plant
+  - name: zaptos
+    text: Zaptos used Todo!
+    poke_api_image: zaptos
+
+  - name: viridian_gym
+    header: Viridian Gym
+    text: TODO
+    background_color: gym
+
+  - name: gyarados
+    text: "Gyarados used todo!"
+    poke_api_image: gyarados
+
+  - name: moltres
+    text: Moltres used TODO!
+    poke_api_image: moltres
+
+  - name: the_elite_four
+    header: The Elite Four
+    text: "todo"
+    background_color: gym
+
+  - name: champion_gary
+    header: Champion Gary
+    text: todo
+    background_color: gym
+
+  - name: pokemon_master
+    header: Pokemon Master
+    text: "Throw your master ball and claim your victory! You truly are the very best!"
+    poke_api_image: mewtwo
+    background_color: gym
 
     # Missing no
     # Ha denne 4 steg forran siste i rock tunnel, som gjør at hvis du feks ruller 5, går du 5 bak, og
