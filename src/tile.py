@@ -16,7 +16,8 @@ class Tile:
         background_color: Tuple[int, int, int] | str = (255, 255, 255),
         text_color: Tuple[int, int, int] = (0, 0, 0),
         border_color: Tuple[int, int, int] = (0, 0, 0),
-        border_width: int = 2,
+        border_width: int = 0,
+        font_size: Optional[int] = None,
     ):
         self.width = width
         self.height = height
@@ -29,6 +30,7 @@ class Tile:
         self.text_color = text_color
         self.border_color = border_color
         self.border_width = border_width
+        self.font_size = font_size
 
     def _get_font(self, size: int, font_type: str = "text") -> ImageFont.ImageFont:
         """
@@ -73,7 +75,7 @@ class Tile:
         img = Image.new("RGB", (self.width, self.height), self.background_color)
         draw = ImageDraw.Draw(img)
 
-        # Draw border
+        # Draw border on all sides
         if self.border_width > 0:
             for i in range(self.border_width):
                 draw.rectangle(
@@ -172,7 +174,7 @@ class Tile:
         # Draw text if provided
         if self.text:
             try:
-                font_size = min(self.width, self.height) // 13
+                font_size = self.font_size if self.font_size else min(self.width, self.height) // 13
                 font = self._get_font(font_size, font_type="text")
 
                 # Calculate available space for text
