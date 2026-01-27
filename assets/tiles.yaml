@@ -56,19 +56,25 @@ tiles:
   # Advantage: Squrtle, Bulbasaur
   - name: Pewter Gym
     header: Pewter Gym
-    text: "Onix: 3/4\nFaint: Drink 2.\nFlash: Give 1"
+    text: |
+      Onix: 3/4
+      Faint: Drink 2
+      Flash: Give 1
     poke_api_image: pokemon/onix
     image_scale: 0.5
     image_margin_top: 25
     background_color: "gym"
 
   - name: Clefairy
-    text: "Caferiy used --TODO--"
+    text: |
+      Caferiy used Metronome!
+      Make up a rule. It lasts until another player lands here and replaces it
     poke_api_image: "pokemon/clefairy"
 
   # Get fossil
   - name: Super Nerd
-    text: "Oh no, it's the super nerd! --TODO-- Get fossile"
+    header: Super Nerd
+    text: "You encounter a Super Nerd! He won't shut up about fossils. Drink 2 to survive the conversation. You receive a Fossil."
 
   - name: Paras
     text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
@@ -91,7 +97,11 @@ tiles:
   # Advantages: Bulbasaur
   - name: Cerulean Gym
     header: Cerulean Gym
-    text: "Starmie: 3/5\nSpecial: +1 Attack if damaged\nFaint: Drink 2\nFlash: Everyone else drinks 1"
+    text: |
+      Starmie: 3/5
+      Special: +1 Attack if damaged
+      Faint: Drink 2
+      Flash: Everyone else drinks 1
     poke_api_image: pokemon/starmie
     image_scale: 0.5
     background_color: "gym"
@@ -130,7 +140,11 @@ tiles:
   # Natural - no weakness
   - name: Vermilion Gym
     header: Vermilion Gym
-    text: "Raichu: 4/4\nSpecial: Raichu Starts\nFaint: Drink 2\nFlash: You get a Repel"
+    text: |
+      Raichu: 4/4
+      Special: Raichu Starts
+      Faint: Drink 2
+      Flash: You get a Repel
     poke_api_image: pokemon/raichu
     image_scale: 0.5
     image_margin_top: 20
@@ -216,7 +230,11 @@ tiles:
   - name: Celadon Gym
     header: "Celadon Gym"
     poke_api_image: pokemon/vileplume
-    text: "Vileplume: 3/7\nSpecial: Toxic; drink 1 at the start of each turn. Increase with 1 every turn.\nFaint: You play with 2 die (this gym)\nFlash:Get an extra turn"
+    text: |
+      Vileplume: 3/7
+      Special: Toxic; drink 1 at the start of each round. Increases by 1 every round.
+      Faint: You play with 2 dice (this gym)
+      Flash: Get an extra turn
     image_scale: 0.5
     font_size: 12
     background_color: "gym"
@@ -261,12 +279,16 @@ tiles:
 
   - name: giovanni
     header: Giovanni
-    text: "Praying on the weak! Last place moves 3 squares back. Give the turn to that player. Such a evil thing to do."
+    text: "Praying on the weak! Last place moves 3 squares back and drink 3. Give the turn to that player. Such a evil thing to do."
     background_color: "silph_co"
 
   - name: saffron_gym
     header: Saffron Gym
-    text: "Alakazam: ?/?\nSpecial: Roll 2 dice to set ATK/HP\nFaint: Drink a die roll. Reroll Alakazam's stats\nFlask: Pick your next movement roll"
+    text: |
+      Alakazam: ?/?
+      Special: Roll 2 dice to set ATK/HP
+      Faint: Drink a die roll. Reroll Alakazam's stats
+      Flash: Pick your next movement roll
     poke_api_image: pokemon/alakazam
     image_scale: 0.45
     image_margin_top: 25
@@ -303,7 +325,11 @@ tiles:
     header: Fuchsia Gym
     poke_api_image: pokemon/weezing
     image_scale: 0.5
-    text: "Weezing: 3/5\nSpecial: Weezing self descruct if killed on the first round. You must finish your drink.\nFaint: Drink 3"
+    text: |
+      Weezing: 3/5
+      Special: Weezing self-destructs if killed on the first round. You must finish your drink.
+      Faint: Drink 3
+      Flash: Give 2 drinks
     background_color: gym
 
   - name: muk
@@ -337,20 +363,26 @@ tiles:
 
   - name: pokemon_lab
     header: Cinnabar Lab
-    poke_api_image: pokemon/aerodactyl
+    # poke_api_image: pokemon/aerodactyl
+    # image_scale: 0.4
+    # image_margin_top: 40
+    font_size: 12
     text: |
-      You enter the laboratory (full of nerds).
-      Trade your fossil for a permanent upgrade:
+      You enter the laboratory (full of nerds). Trade your fossil for a permanent upgrade:
       Aerodactyl: You may add +1 to any movement roll
       Kabuto: Ancient luck! Pokeballs now catch on 2-6 rolls (instead of 4-6)
       Omanyte: Reduce all drinks given to you by other players by half (rounded down)
 
   - name: cinnabar_gym
-    header: Cannabar Gym
+    header: Cinnabar Gym
     poke_api_image: pokemon/arcanine
     image_scale: 0.4
     image_margin_top: 40
-    text: "Arcanine: 5/5\nSpecial: Before the round, answer a quiz question from another player. Correct = Immune to his attack\nFaint: Drink 4\nFlash: Bonus turn"
+    text: |
+      Arcanine: 5/5
+      Special: Before each round, answer a quiz question from another player. Correct = Immune to his attack
+      Faint: Drink 4
+      Flash: Bonus turn
     font_size: 12
     background_color: gym
 
@@ -373,7 +405,13 @@ tiles:
 
   - name: viridian_gym
     header: Viridian Gym
-    text: TODO
+    poke_api_image: pokemon/rhydon
+    image_scale: 0.5
+    text: |
+      Rhydon: ?/6
+      Special: ATK is rolled each round
+      Faint: Drink the excess damage
+      Flash: Last place must drink 3. Classic Giovanni move.
     background_color: gym
 
   - name: dragonite
@@ -390,12 +428,27 @@ tiles:
 
   - name: the_elite_four
     header: The Elite Four
-    text: "todo"
+    text: |
+      Elite four: 4/10
+      Special: You fight with 4 dice
+      Faint: Drink 4
+      Flash: Advance to Champion!
+    font_size: 11
     background_color: gym
 
   - name: champion_gary
     header: Champion Gary
-    text: todo
+    poke_api_image: pokemon/blastoise
+    image_scale: 0.5
+    text: |
+      The Rival Finale! Gary sends out his squad in order:
+        1. Pidgeot: 4/5 — Gust knocks 1 off your ATK roll if you lose a round
+        2. Alakazam: 5/4 — Mind Melt makes you reroll your highest die
+        3. Blastoise: 5/8 — Hydro Cannon deals +1 damage if you used water or ice earlier
+      Special: Rival's Edge — each round Gary wins, drink 1 and lose 1 item/ability until the battle ends.
+      Faint: Fail to clear the trio? Drink 6, yell "Smell ya later!", and fall back to the Elite Four.
+      Flash: Defeat all three in a row. Every Rival drinks 2, plant the Champion badge, YOU ARE THE CHAMPION!
+    font_size: 12
     background_color: gym
 
   - name: pokemon_master
