@@ -17,7 +17,7 @@ tiles:
   - name: pokeball
     text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use it's move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
     poke_api_image: "item/poke-ball"
-    font_size: 12
+    font_size: 14
     image_scale: 0.5
     image_margin_top: 20
 
@@ -59,7 +59,7 @@ tiles:
     text: |
       Onix: 3/4
       Faint: Drink 2
-      Flash: Give 1
+      Flash: Get a Pokeball!
     poke_api_image: pokemon/onix
     image_scale: 0.5
     image_margin_top: 25
@@ -68,13 +68,15 @@ tiles:
   - name: Clefairy
     text: |
       Caferiy used Metronome!
-      Make up a rule. It lasts until another player lands here and replaces it
+      Make up a rule. It lasts until another player replaces it
     poke_api_image: "pokemon/clefairy"
 
   # Get fossil
   - name: Super Nerd
     header: Super Nerd
-    text: "You encounter a Super Nerd! He won't shut up about fossils. Drink 2 to survive the conversation. You receive a Fossil."
+    text: |
+      You encounter a Super Nerd! He won't shut up about fossils. Drink 2 to survive the conversation.
+      You receive a Fossil.
 
   - name: Paras
     text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
@@ -83,7 +85,11 @@ tiles:
   # Cerulean City
   - name: Poke Mart
     header: Poke Mart
-    text: "Purchasing options:\nPotion (2 drinks): Block a drinking request\nRepel (3 drinks): Ignore the effect of a pokemon you encounter\nPokeball (4 drinks)"
+    text: |
+      Purchasing options:
+      Potion (2 drinks): Block a drinking request
+      Repel (3 drinks): Ignore the effect of a pokemon you encounter
+      Pokeball (4 drinks)
 
   - name: Gary
     header: Gary
@@ -107,7 +113,8 @@ tiles:
     background_color: "gym"
 
   - name: Slowpoke
-    text: "For the first one here, make up a gesture. For the rest of the game, when you do it, the last to mimic takes a drink"
+    text: |
+      For the first one here, make up a gesture. For the rest of the game, when you do it, the last to mimic takes a drink
     poke_api_image: "pokemon/slowpoke"
     image_margin_top: -10
 
@@ -126,13 +133,17 @@ tiles:
     text: "Challenge a player to a trainer battle. If you win, swap places. Lost? Drink 4"
 
   - name: Tentacool
-    text: "Tentacool used Constrict!\nGrab your drink and drink 3. You are not allowed to let go of your drink until it's finished."
+    text: |
+      Tentacool used Constrict!
+      Grab your drink and drink 3. You are not allowed to let go of your drink until it's finished.
     poke_api_image: "pokemon/tentacool"
     image_scale: 0.85
     image_margin_top: -10
 
   - name: Spearow
-    text: "Spearow used Pluck!\nLose your next turn. Pick a player. Give 4 and steal 1 item."
+    text: |
+      Spearow used Pluck!
+      Pick a player. Give 4 and steal 1 item (random). Lose your next turn.
     poke_api_image: "pokemon/spearow"
     image_scale: 1.2
     image_margin_top: -50
@@ -163,7 +174,10 @@ tiles:
     image_margin_top: -10
 
   - name: cubone
-    text: "Cubone tells you about his mother...\nListen respectfully: Everyone drinks 1\nSkip: Drink 5, get an extra turn"
+    text: |
+      Cubone tells you about his mother...
+      Listen respectfully: Everyone drinks 1
+      Skip: Drink 5, get an extra turn
     poke_api_image: "pokemon/cubone"
     background_color: "rock_tunnel"
 
@@ -189,7 +203,8 @@ tiles:
     # One square lavender town
   - name: lavender_town
     header: "Lavender Town"
-    text: "Finally out of that stupid cave"
+    text: |
+      Creepy soundtrack. There is PokeCenter and a PokeMart in this town. You may visit one of the one of them.
 
   - name: pokemon_tower
     header: Pokemon Tower
@@ -212,13 +227,17 @@ tiles:
     image_scale: 0.8
 
   - name: hypno
-    text: "Hypno used Curse!\nUntil the end of the game, every time you curse, you drink 2"
+    text: |
+      Hypno used Curse!
+      Until the end of the game, every time you curse, you drink 2. 
+      Curse now in frustration!
     background_color: "pokemon_tower"
     poke_api_image: "pokemon/hypno"
 
   - name: Gary
     header: Gary
-    text: "Roll a die. Drink that number. Seriusly though, is this dude following you or something?"
+    text: |
+      Roll a die. Drink that number. Seriusly though, is this dude following you or something?
 
   - name: snorlax
     text: "A sleeping snorlax!\nStart singing a song! Anyone joining, avoids drinking 4. If no one joins, you solely drink 4."
@@ -236,7 +255,7 @@ tiles:
       Faint: You play with 2 dice (this gym)
       Flash: Get an extra turn
     image_scale: 0.5
-    font_size: 12
+    font_size: 13
     background_color: "gym"
 
   - name: mr_mime
@@ -245,7 +264,8 @@ tiles:
 
   - name: saffron_city_mall
     header: "Saffron City Mall"
-    text: "You may either visit a PokeMart or a PokeCenter! Such a great square"
+    text: |
+      This mall has both a PokeMart and a PokeCenter! You may visit both.
 
   - name: Gary
     header: Gary
@@ -262,7 +282,7 @@ tiles:
     background_color: "silph_co"
 
   - name: arbok
-    text: "Arbob used Glare! Lock eyes with a player. First to blink, drinks 3, and must subtract 2 from their next move roll"
+    text: "Arbob used Glare! At the start of your turn, lock eyes with a player. First to blink, drinks 3, and must subtract 2 from their next move roll"
     poke_api_image: pokemon/arbok
     background_color: "silph_co"
 
@@ -279,7 +299,7 @@ tiles:
 
   - name: giovanni
     header: Giovanni
-    text: "Praying on the weak! Last place moves 3 squares back and drink 3. Give the turn to that player. Such a evil thing to do."
+    text: "Preying on the weak! Last place moves 3 squares back and drinks 3. If you are last place, you receive the Master Ball instead (once)"
     background_color: "silph_co"
 
   - name: saffron_gym
@@ -297,26 +317,48 @@ tiles:
 
   - name: safari_zone
     header: Safari Zone
-    text: "At every Safari Zone encounter, you  get a Safari Ball!\nRoll 6: Cought! Use it's move later\nRoll 2-5: Missed! Resolve tile normally\nRoll 1: You threw a rock! Pokemon is enraged"
+    text: |
+      At every Safari Zone encounter, you get a Safari Ball! Optional:
+      Roll 5-6: Cought! Use it's move later
+      Roll 3-4: Missed! Resolve tile normally
+      Roll 1-2: You threw a rock! Pokemon is enraged
     background_color: safari_zone
 
   - name: Tauros
-    text: A wild Taurus appeared... but instantly fled. Drink 3 for not being quick enough
+    text: |
+      Tauros used Horn Attack! Choose:
+      1. Move 1 square ahead, drink 1
+      2. Move 2 square ahead, drink 2
+      Enraged: Move 6 back and drink 6
     background_color: safari_zone
     poke_api_image: pokemon/tauros
 
   - name: chansey
-    text: "Chansey used Heal Bell!\nReplace your current drink with non-alcoholic\nEnraged: Flees"
+    text: |
+      Chansey used Heal Bell!
+      Replace your current drink with non-alcoholic
+      Enraged: Flees, drink 2 (dick)
     background_color: safari_zone
     poke_api_image: pokemon/chansey
 
   - name: scyther
-    text: "Scyther used Slash! \nEnraged: "
+    text: |
+      Scyther used Slash!
+      Your drink is sliced in half! Drink half your drink, and move that many sips ahead. (Round down)
+      Enraged: Move back instead
+    font_size: 16
     background_color: safari_zone
     poke_api_image: pokemon/scyther
 
   - name: kangaskhan
-    text: "Kangaskhan used TODO"
+    text: |
+      Kangaskhan used Comet Punch! Hot potato:
+      Roll 1-4: Pass the die to your left
+      Roll 5-6: Hit! Drink the pass count, take next turn
+      Full circle back to you? You're hit!
+      Enraged: Baby entered the chat - drink double!
+    image_scale: 0.7
+    font_size: 16
     background_color: safari_zone
     poke_api_image: pokemon/kangaskhan
 
@@ -386,12 +428,19 @@ tiles:
     font_size: 12
     background_color: gym
 
+  # Both Golem and Zapdos sends the player back here. Should be a "At start of turn" effect
+  - name: electrode
+    poke_api_image: pokemon/electrode
+    font_size: 14
+    text: |
+      Electorde use self-destruct!
+      At the start of your turn, roll a die:
+      5-6: BOOM! Finish your drink. You get knocked one square back by the blast.
+      1-4: Close one! Drink 1 to calm your nerves, and proceed normally
+
   - name: lickitung
     text: Lickitung used Lick! Give 2, and stick your tounge out until your next turn.
     poke_api_image: pokemon/lickitung
-
-  - name: placeholder
-    header: PLACEHOLDER
 
   - name: golem
     text: "Golem used Earthquake!\nEvery player must drink 2 and move 2 squares back"
@@ -410,7 +459,7 @@ tiles:
     text: |
       Rhydon: ?/6
       Special: ATK is rolled each round
-      Faint: Drink the excess damage
+      Faint: Drink the ATK roll from Rhydon
       Flash: Last place must drink 3. Classic Giovanni move.
     background_color: gym
 
@@ -433,22 +482,14 @@ tiles:
       Special: You fight with 4 dice
       Faint: Drink 4
       Flash: Advance to Champion!
-    font_size: 11
+    font_size: 14
     background_color: gym
 
   - name: champion_gary
     header: Champion Gary
-    poke_api_image: pokemon/blastoise
     image_scale: 0.5
     text: |
-      The Rival Finale! Gary sends out his squad in order:
-        1. Pidgeot: 4/5 — Gust knocks 1 off your ATK roll if you lose a round
-        2. Alakazam: 5/4 — Mind Melt makes you reroll your highest die
-        3. Blastoise: 5/8 — Hydro Cannon deals +1 damage if you used water or ice earlier
-      Special: Rival's Edge — each round Gary wins, drink 1 and lose 1 item/ability until the battle ends.
-      Faint: Fail to clear the trio? Drink 6, yell "Smell ya later!", and fall back to the Elite Four.
-      Flash: Defeat all three in a row. Every Rival drinks 2, plant the Champion badge, YOU ARE THE CHAMPION!
-    font_size: 12
+      Fill up your drink. Finish it to take down this bastard for the last time.
     background_color: gym
 
   - name: pokemon_master

@@ -13,7 +13,7 @@
 
 ## Drinking
 
-The standard drink is a 0.33 beer, with 4.5% abv. One "drink", consists of 10 sips. A good
+The standard drink is a 0.33 beer, with 4.5% abv. One "drink", consists of 10 sips.
 
 *Important*: It's only allowed to fill up your glass (drink), when it's empty. A lot of mechanics in the game rely on the progress of your drink.
 
@@ -39,12 +39,3 @@ Onix has 2 in attack, 3 health
 
 Faint: Drink 4
 Flash: Give 1 drink
-
-Cinnabar Lab:
-Aerodactyl: You may add +1 to any movement roll
-Kabuto: Ancient Luck! Pokeballs now catch rolling 2-6 (instead of 4-6)
-Omanyte: Reduce all drinks given to you by other players by half
-
-Viridian Gym
-
-Flash: Immune to drinks given to you by other players for the rest of the game
