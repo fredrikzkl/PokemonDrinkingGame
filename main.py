@@ -1,6 +1,6 @@
 from src import BoardGameEngine
 from assets.load_tiles import load_tiles_from_yaml
-from assets.parse_layout import parse_layout, get_board_dimensions
+from assets.parse_layout import parse_layout, get_board_dimensions, get_tile_connections
 from PIL import Image
 import os
 import sys
@@ -51,25 +51,26 @@ def create_board_from_yaml(
 
     print(f"Loaded {len(tiles)} tiles from {yaml_file}")
 
-    # Parse layout to get tile positions
+    # Parse layout to get tile positions and connections
     layout = parse_layout(layout_file)
     board_rows, board_cols = get_board_dimensions(layout_file)
-
+    tile_connections = get_tile_connections(layout_file)
+    
     print(f"Board layout: {board_rows}x{board_cols} (from {layout_file})")
     print(f"Layout defines {len(layout)} tile positions")
-
+    
     if tile_rotation:
         print("Tile rotation enabled: tiles will be rotated for table play")
-
+    
     # Initialize engine
     engine = BoardGameEngine(
-        tile_width=200,
-        tile_height=200,
+        tile_width=300,
+        tile_height=300,
         board_cols=board_cols,
         board_rows=board_rows,
-        tile_spacing=5,  # Reduced spacing
+        tile_spacing=0,  # No spacing between tiles
     )
-
+    
     # Place tiles according to layout pattern
     # Tile 1 (index 0) goes to position 01, tile 2 (index 1) goes to position 02, etc.
     placed_count = 0
@@ -78,13 +79,13 @@ def create_board_from_yaml(
         if tile_number in layout:
             row, col = layout[tile_number]
             tile_image = tile.render()
-
+            
             # Apply rotation if flag is set
             if tile_rotation:
                 tile_image = rotate_tile_for_position(
                     tile_image, row, col, board_rows, board_cols
                 )
-
+            
             engine.set_tile(row, col, tile_image)
             placed_count += 1
         else:

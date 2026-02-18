@@ -10,6 +10,7 @@ COLORS = {
     "silph_co": (144, 176, 224),
     "safari_zone": (184, 192, 88),
     "seafoam_islands": (0, 160, 232),
+    "optional_stop": (200, 200, 200),
 }
 
 # Text colors

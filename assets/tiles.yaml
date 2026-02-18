@@ -4,7 +4,9 @@
 tiles:
   - name: Pallet Town
     header: "Pallet Town"
-    text: "Pick one, dude"
+    footer: "Pick one, dude"
+    local_image: "pallet-town.png"
+    image_margin_top: 40
 
   - name: Rattata
     text: "Rattata used Tackle! ..wait, you seriously rolled a 1? You fainted. Finish your drink"
@@ -74,9 +76,9 @@ tiles:
   # Get fossil
   - name: Super Nerd
     header: Super Nerd
+    background_color: "optional_stop"
     text: |
-      You encounter a Super Nerd! He won't shut up about fossils. Drink 2 to survive the conversation.
-      You receive a Fossil.
+      A Super Nerd won't shut up about fossils. Drink 2 to survive the conversation. You receive a Fossil.
 
   - name: Paras
     text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
@@ -97,7 +99,9 @@ tiles:
 
   - name: Poke Center
     header: Poke Center
-    text: "Bro needs some healing! Optional: Replace your current drink with water. Drink 4"
+    text: |
+      Your Pokemon are fully restored! You, however, look terrible. 
+      Optional: Replace your drink with water. Drink 4.
 
   # Misty - Starmie, type water
   # Advantages: Bulbasaur
@@ -168,7 +172,9 @@ tiles:
     background_color: "rock_tunnel"
 
   - name: Zubat
-    text: "Zubats... they're... they're everywhere! Take a drink. Next turn, if you roll 1 or 2, stay here and take a drink!"
+    text: |
+      Zubats... they're... they're everywhere! Take a drink. 
+      **Start of turn:** If you roll 1 or 2, stay here and take a drink!
     poke_api_image: "pokemon/zubat"
     background_color: "rock_tunnel"
     image_margin_top: -10
@@ -187,7 +193,7 @@ tiles:
     background_color: "rock_tunnel"
 
   - name: Diglett
-    text: "Diglett used Dig!\nAt the start of your turn, if your drink is below 50%, finish your drink! Otherwise, drink down to 50%"
+    text: "Diglett used Dig!\n**Start of turn:** If your drink is below 50%, finish your drink! Otherwise, drink down to 50%"
     poke_api_image: "pokemon/diglett"
     background_color: "rock_tunnel"
     image_scale: 1.2
@@ -265,7 +271,8 @@ tiles:
   - name: saffron_city_mall
     header: "Saffron City Mall"
     text: |
-      This mall has both a PokeMart and a PokeCenter! You may visit both.
+      This mall has both a PokeMart and a PokeCenter! 
+      You may visit both.
 
   - name: Gary
     header: Gary
@@ -281,9 +288,9 @@ tiles:
     poke_api_image: pokemon/magneton
     background_color: "silph_co"
 
-  - name: arbok
-    text: "Arbob used Glare! At the start of your turn, lock eyes with a player. First to blink, drinks 3, and must subtract 2 from their next move roll"
-    poke_api_image: pokemon/arbok
+  - name: porygon
+    text: "Porygon used Conversion!\nCopy the effect of the last square any player landed on."
+    poke_api_image: pokemon/porygon
     background_color: "silph_co"
 
     # Charmander-starters må drikke 6?
@@ -294,7 +301,7 @@ tiles:
 
   - name: team_rocket
     header: Team Rocket
-    text: "It's Team Rocket! At the start of your turn, drink 3 to blast them off! If you have met the bastards before, drink 6 instead."
+    text: "It's Team Rocket! **Start of turn:** Drink 3 to blast them off! If you have met the bastards before, drink 6 instead."
     background_color: "silph_co"
 
   - name: giovanni
@@ -434,7 +441,7 @@ tiles:
     font_size: 14
     text: |
       Electorde use self-destruct!
-      At the start of your turn, roll a die:
+      **Start of turn:** Roll a die:
       5-6: BOOM! Finish your drink. You get knocked one square back by the blast.
       1-4: Close one! Drink 1 to calm your nerves, and proceed normally
 

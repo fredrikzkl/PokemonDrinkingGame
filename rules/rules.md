@@ -9,13 +9,17 @@
 5. Gold squares a gyms. You must stop at all gold squares, whether or not your die roll places you beyond them. If you have completed a Gym, you don't have to re-do it if you land on the same square later.
 6. Players in a gym battle are immune to movement effects caused by others.
 7. Colored squares belongs to a "Zone", where additional rules are in effect. Expect more drinks!
-8. Forced movement from others players, doesn't trigger the square you land on, unless it says otherwise (At the start of your turn...)
+8. Gray squares are optional stops. You may choose to stop at a gray square when passing through it, even if your roll would take you further.
+9. Forced movement from other players doesn't trigger the square you land on, unless it has a "Start of turn" effect.
+10. **Start of turn:** tiles with this keyword trigger every turn you remain there, including if forced there by another player.
 
 ## Drinking
 
 The standard drink is a 0.33 beer, with 4.5% abv. One "drink", consists of 10 sips.
 
 *Important*: It's only allowed to fill up your glass (drink), when it's empty. A lot of mechanics in the game rely on the progress of your drink.
+
+## Trainer Battle
 
 ## Gym Mechanics
 

@@ -1,5 +1,6 @@
+import re
 from PIL import Image, ImageDraw, ImageFont
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 from pathlib import Path
 
 
@@ -18,6 +19,7 @@ class Tile:
         border_color: Tuple[int, int, int] = (0, 0, 0),
         border_width: int = 0,
         font_size: Optional[int] = None,
+        footer: Optional[str] = None,
     ):
         self.width = width
         self.height = height
@@ -31,6 +33,7 @@ class Tile:
         self.border_color = border_color
         self.border_width = border_width
         self.font_size = font_size
+        self.footer = footer
 
     def _get_font(self, size: int, font_type: str = "text") -> ImageFont.ImageFont:
         """
@@ -55,13 +58,14 @@ class Tile:
                 except Exception as e:
                     print(f"Warning: Could not load gbboot.ttf font: {e}")
         else:
-            # Text uses pokemon_classic.ttf
+            # Text uses gil.ttf (vector font - scales cleanly)
             font_path = fonts_dir / "gil.ttf"
+            # font_path = fonts_dir / "pkmon_rby.ttf"  # pixel font - only looks good at specific sizes
             if font_path.exists():
                 try:
                     return ImageFont.truetype(str(font_path), size)
                 except Exception as e:
-                    print(f"Warning: Could not load pokemon_classic.ttf font: {e}")
+                    print(f"Warning: Could not load gil.ttf font: {e}")
 
         # Fallback to system font
         try:
@@ -69,6 +73,38 @@ class Tile:
         except Exception:
             # Final fallback to default font
             return ImageFont.load_default()
+
+    def _parse_styled_words(self, text: str) -> List[Tuple[str, bool]]:
+        """Parse text with **bold** markers into [(word, is_bold), ...]."""
+        segments = re.split(r"(\*\*.*?\*\*)", text)
+        result = []
+        for segment in segments:
+            if not segment:
+                continue
+            is_bold = segment.startswith("**") and segment.endswith("**")
+            clean = segment[2:-2] if is_bold else segment
+            for word in clean.split():
+                result.append((word, is_bold))
+        return result
+
+    def _group_line_segments(
+        self, styled_line: List[Tuple[str, bool]]
+    ) -> List[Tuple[str, bool]]:
+        """Group consecutive words with same bold state into (text, is_bold) segments."""
+        if not styled_line:
+            return []
+        segments = []
+        current_bold = styled_line[0][1]
+        current_words = [styled_line[0][0]]
+        for word, is_bold in styled_line[1:]:
+            if is_bold == current_bold:
+                current_words.append(word)
+            else:
+                segments.append((" ".join(current_words), current_bold))
+                current_bold = is_bold
+                current_words = [word]
+        segments.append((" ".join(current_words), current_bold))
+        return segments
 
     def render(self) -> Image.Image:
         # Create base image
@@ -174,7 +210,11 @@ class Tile:
         # Draw text if provided
         if self.text:
             try:
-                font_size = self.font_size if self.font_size else min(self.width, self.height) // 13
+                font_size = (
+                    self.font_size
+                    if self.font_size
+                    else min(self.width, self.height) // 14
+                )
                 font = self._get_font(font_size, font_type="text")
 
                 # Calculate available space for text
@@ -203,57 +243,88 @@ class Tile:
                     )
                     text_y_start = padding + self.border_width + header_space
 
-                # First split by explicit newlines (\n), then wrap each paragraph
                 paragraphs = self.text.split("\n")
-                lines = []
+                styled_lines = []
 
                 for paragraph in paragraphs:
-                    # Wrap each paragraph to fit within available width
-                    words = paragraph.split()
+                    styled_words = self._parse_styled_words(paragraph)
                     current_line = []
 
-                    for word in words:
-                        # Test if adding this word would exceed width
-                        test_line = " ".join(current_line + [word])
-                        bbox = draw.textbbox((0, 0), test_line, font=font)
+                    for word, is_bold in styled_words:
+                        test_text = " ".join(w for w, _ in current_line + [(word, is_bold)])
+                        bbox = draw.textbbox((0, 0), test_text, font=font)
                         test_width = bbox[2] - bbox[0]
 
                         if test_width <= available_width:
-                            current_line.append(word)
+                            current_line.append((word, is_bold))
                         else:
-                            # Current line is full, start a new one
                             if current_line:
-                                lines.append(" ".join(current_line))
-                            current_line = [word]
+                                styled_lines.append(current_line)
+                            current_line = [(word, is_bold)]
 
-                    # Add the last line of this paragraph
                     if current_line:
-                        lines.append(" ".join(current_line))
+                        styled_lines.append(current_line)
 
-                # Calculate total text height
-                line_height = (
+                base_line_height = (
                     draw.textbbox((0, 0), "Ag", font=font)[3]
                     - draw.textbbox((0, 0), "Ag", font=font)[1]
                 )
-                total_text_height = len(lines) * line_height
+                line_height = int(base_line_height * 1.2)
+                total_text_height = len(styled_lines) * line_height
 
-                # Center text vertically within available space
                 if self.image_path:
-                    # Text at bottom, but centered horizontally
                     y = text_y_start + (available_height - total_text_height) // 2
                 else:
-                    # Center vertically in full tile
                     y = (self.height - total_text_height) // 2
 
-                # Draw each line, centered horizontally
-                for line in lines:
-                    bbox = draw.textbbox((0, 0), line, font=font)
-                    text_width = bbox[2] - bbox[0]
-                    x = (self.width - text_width) // 2
-                    draw.text((x, y), line, fill=self.text_color, font=font)
+                for styled_line in styled_lines:
+                    line_text = " ".join(w for w, _ in styled_line)
+                    bbox = draw.textbbox((0, 0), line_text, font=font)
+                    total_width = bbox[2] - bbox[0]
+                    start_x = (self.width - total_width) // 2
+
+                    segments = self._group_line_segments(styled_line)
+                    char_pos = 0
+                    for seg_idx, (seg_text, is_bold) in enumerate(segments):
+                        prefix = line_text[:char_pos]
+                        if prefix:
+                            prefix_w = (
+                                draw.textbbox((0, 0), prefix, font=font)[2]
+                                - draw.textbbox((0, 0), prefix, font=font)[0]
+                            )
+                        else:
+                            prefix_w = 0
+
+                        seg_x = start_x + prefix_w
+                        draw.text((seg_x, y), seg_text, fill=self.text_color, font=font)
+                        if is_bold:
+                            draw.text((seg_x + 1, y), seg_text, fill=self.text_color, font=font)
+
+                        char_pos += len(seg_text)
+                        if seg_idx < len(segments) - 1:
+                            char_pos += 1
+
                     y += line_height
 
             except Exception as e:
                 print(f"Warning: Could not render text: {e}")
+
+        if self.footer:
+            try:
+                footer_font_size = min(self.width, self.height) // 10
+                footer_font = self._get_font(footer_font_size, font_type="header")
+                footer_bbox = draw.textbbox((0, 0), self.footer, font=footer_font)
+                footer_width = footer_bbox[2] - footer_bbox[0]
+                footer_height = footer_bbox[3] - footer_bbox[1]
+                footer_x = (self.width - footer_width) // 2
+                footer_y = self.height - footer_height - self.border_width - 20
+                draw.text(
+                    (footer_x, footer_y),
+                    self.footer,
+                    fill=self.text_color,
+                    font=footer_font,
+                )
+            except Exception as e:
+                print(f"Warning: Could not render footer: {e}")
 
         return img
