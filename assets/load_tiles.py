@@ -60,6 +60,11 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
                 project_root = Path(__file__).parent.parent
                 image_path = str(project_root / image_path)
 
+        background_image = None
+        if "local_background_image" in tile_def:
+            project_root = Path(__file__).parent.parent
+            background_image = str(project_root / "assets" / "images" / "local" / tile_def["local_background_image"])
+
         def resolve_color(color_value):
             if isinstance(color_value, str):
                 # Remove $ or @ prefix if present
@@ -105,6 +110,7 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
             image_path=image_path,
             image_scale=tile_def.get("image_scale", 0.8),
             image_margin_top=tile_def.get("image_margin_top"),
+            image_anchor_bottom=tile_def.get("image_anchor_bottom", False),
             background_color=bg_color
             if isinstance(bg_color, tuple)
             else (255, 255, 255),
@@ -113,6 +119,8 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
             border_width=tile_def.get("border_width", 1),
             font_size=tile_def.get("font_size"),
             footer=tile_def.get("footer"),
+            background_image=background_image,
+            text_margin_top=tile_def.get("text_margin_top", 0),
         )
         tiles.append(tile)
 
@@ -163,7 +171,11 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
                     project_root = Path(__file__).parent.parent
                     image_path = str(project_root / image_path)
 
-            # Resolve color references (same logic as load_tiles_from_yaml)
+            background_image = None
+            if "local_background_image" in tile_def:
+                project_root = Path(__file__).parent.parent
+                background_image = str(project_root / "assets" / "images" / "local" / tile_def["local_background_image"])
+
             def resolve_color(color_value):
                 if isinstance(color_value, str):
                     color_name = color_value.lstrip("$@")
@@ -197,6 +209,7 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
                 image_path=image_path,
                 image_scale=tile_def.get("image_scale", 0.8),
                 image_margin_top=tile_def.get("image_margin_top"),
+                image_anchor_bottom=tile_def.get("image_anchor_bottom", False),
                 background_color=bg_color
                 if isinstance(bg_color, tuple)
                 else (255, 255, 255),
@@ -207,6 +220,8 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
                 border_width=tile_def.get("border_width", 1),
                 font_size=tile_def.get("font_size"),
                 footer=tile_def.get("footer"),
+                background_image=background_image,
+                text_margin_top=tile_def.get("text_margin_top", 0),
             )
             tiles.append(tile)
         else:

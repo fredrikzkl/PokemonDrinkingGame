@@ -14,12 +14,15 @@ class Tile:
         image_path: Optional[str] = None,
         image_scale: float = 0.8,
         image_margin_top: Optional[int] = None,
+        image_anchor_bottom: bool = False,
         background_color: Tuple[int, int, int] | str = (255, 255, 255),
         text_color: Tuple[int, int, int] = (0, 0, 0),
         border_color: Tuple[int, int, int] = (0, 0, 0),
         border_width: int = 0,
         font_size: Optional[int] = None,
         footer: Optional[str] = None,
+        background_image: Optional[str] = None,
+        text_margin_top: int = 0,
     ):
         self.width = width
         self.height = height
@@ -28,12 +31,15 @@ class Tile:
         self.image_path = image_path
         self.image_scale = image_scale
         self.image_margin_top = image_margin_top
+        self.image_anchor_bottom = image_anchor_bottom
         self.background_color = background_color
         self.text_color = text_color
         self.border_color = border_color
         self.border_width = border_width
         self.font_size = font_size
         self.footer = footer
+        self.background_image = background_image
+        self.text_margin_top = text_margin_top
 
     def _get_font(self, size: int, font_type: str = "text") -> ImageFont.ImageFont:
         """
@@ -107,8 +113,18 @@ class Tile:
         return segments
 
     def render(self) -> Image.Image:
-        # Create base image
         img = Image.new("RGB", (self.width, self.height), self.background_color)
+
+        if self.background_image:
+            try:
+                bg_img = Image.open(self.background_image).convert("RGB")
+                bg_img = bg_img.resize(
+                    (self.width, self.height), Image.Resampling.LANCZOS
+                )
+                img.paste(bg_img, (0, 0))
+            except Exception as e:
+                print(f"Warning: Could not load background image {self.background_image}: {e}")
+
         draw = ImageDraw.Draw(img)
 
         # Draw border on all sides
@@ -119,41 +135,25 @@ class Tile:
                     outline=self.border_color,
                 )
 
-        # Draw header at the top
+        # Calculate header dimensions (needed for image positioning)
         header_height = 0
+        header_font = None
+        header_x = 0
+        header_y = 0
         if self.header:
             try:
-                # Use gbboot.ttf for header
                 header_font_size = min(self.width, self.height) // 8
                 header_font = self._get_font(header_font_size, font_type="header")
-
-                # Calculate header height
                 header_bbox = draw.textbbox((0, 0), self.header, font=header_font)
                 header_height = header_bbox[3] - header_bbox[1]
-                header_y = self.border_width + 20  # More padding from border/top
-
-                # Center header horizontally
-                header_bbox = draw.textbbox((0, 0), self.header, font=header_font)
+                header_y = self.border_width + 20
                 header_width = header_bbox[2] - header_bbox[0]
                 header_x = (self.width - header_width) // 2
-
-                # Then draw main text on top
-                draw.text(
-                    (header_x, header_y),
-                    self.header,
-                    fill=self.text_color,
-                    font=header_font,
-                )
-
-                # Add some spacing after header
                 header_height += 10
             except Exception as e:
-                print(f"Warning: Could not render header: {e}")
-                import traceback
+                print(f"Warning: Could not calculate header: {e}")
 
-                traceback.print_exc()
-
-        # Load and paste image if provided
+        # Load and paste image (drawn before header/text so it's always behind)
         if self.image_path:
             try:
                 tile_image = Image.open(self.image_path)
@@ -182,15 +182,13 @@ class Tile:
                 # Center horizontally, position vertically
                 x_offset = (self.width - tile_image.width) // 2
 
-                # Position image using margin_top parameter or default behavior
-                if self.image_margin_top is not None:
-                    # Use explicit margin_top value
+                if self.image_anchor_bottom:
+                    y_offset = self.height - tile_image.height
+                elif self.image_margin_top is not None:
                     y_offset = self.image_margin_top
                 elif self.header:
-                    # Default: position right after header with -10 margin
                     y_offset = self.border_width + header_height - 10
                 else:
-                    # Default: position at top with -10 margin
                     y_offset = self.border_width - 10
 
                 # Convert to integer (allow negative values for positioning above border)
@@ -206,6 +204,15 @@ class Tile:
                 import traceback
 
                 traceback.print_exc()
+
+        # Draw header on top of image
+        if self.header and header_font:
+            draw.text(
+                (header_x, header_y),
+                self.header,
+                fill=self.text_color,
+                font=header_font,
+            )
 
         # Draw text if provided
         if self.text:
@@ -224,9 +231,11 @@ class Tile:
                 # Account for header space
                 header_space = header_height if self.header else 0
 
-                # If image exists, reserve space at top; text goes at bottom
-                if self.image_path:
-                    # Reserve space for image at top
+                if self.image_path and self.image_anchor_bottom:
+                    image_area_height = self.height // 2
+                    available_height = image_area_height
+                    text_y_start = header_space
+                elif self.image_path:
                     image_area_height = self.height // 2
                     available_height = (
                         self.height
@@ -273,9 +282,9 @@ class Tile:
                 total_text_height = len(styled_lines) * line_height
 
                 if self.image_path:
-                    y = text_y_start + (available_height - total_text_height) // 2
+                    y = text_y_start + (available_height - total_text_height) // 2 + self.text_margin_top
                 else:
-                    y = (self.height - total_text_height) // 2
+                    y = (self.height - total_text_height) // 2 + self.text_margin_top
 
                 for styled_line in styled_lines:
                     line_text = " ".join(w for w, _ in styled_line)
