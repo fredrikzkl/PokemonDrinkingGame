@@ -13,24 +13,24 @@ tiles:
     poke_api_image: "pokemon/rattata"
 
   - name: Pidgey
-    text: "Pidgey used Quick Attack! Use that quickness to to give 1 drink, and take an extra turn"
+    text: "Pidgey used Quick Attack! Use that quickness to give 1 drink, and take an extra turn"
     poke_api_image: "pokemon/pidgey"
 
   - name: pokeball
-    text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use it's move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
+    text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use its move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
     poke_api_image: "item/poke-ball"
     image_scale: 0.4
     image_margin_top: 10
     text_margin_top: -20
 
   # Viridian Forest
-  - name: Virdian Forest
-    header: "Virdian Forest"
+  - name: Viridian Forest
+    header: "Viridian Forest"
     text: "Try not to get lost! When you roll to move, if you roll 5 or 6, drink 1 and return here"
     background_color: "viridian_forest"
 
   - name: Caterpie
-    text: "Caterpie used String Shot! All players may only move half of what the roll on their next turn (round up)"
+    text: "Caterpie used String Shot! All players may only move half of what they roll on their next turn (round up)"
     poke_api_image: "pokemon/caterpie"
     background_color: "viridian_forest"
 
@@ -50,7 +50,7 @@ tiles:
     background_color: "viridian_forest"
 
   - name: Beedrill
-    text: "Beedrill used Twinnneedle!\nPick two players to drink 2"
+    text: "Beedrill used Twineedle!\nPick two players to drink 2"
     poke_api_image: "pokemon/beedrill"
     background_color: "viridian_forest"
 
@@ -70,7 +70,7 @@ tiles:
 
   - name: Clefairy
     text: |
-      Caferiy used Metronome!
+      Clefairy used Metronome!
       Make up a rule. It lasts until another player replaces it
     poke_api_image: "pokemon/clefairy"
 
@@ -78,15 +78,15 @@ tiles:
   - name: Super Nerd
     header: Super Nerd
     local_image: super-nerd.png
-    background_color: "optional_stop"
     image_scale: 0.45
-    image_margin_top: 30
+    image_margin_top: 25
     text_margin_top: 30
     text: |
-      A Super Nerd won't shut up about fossils. Drink 2 to survive the conversation. You receive a Fossil.
+      **You may stop here when passing through.** 
+      The nerd won't shut up about fossils. Drink 2 to survive the conversation. You receive a **Fossil.**
 
   - name: Paras
-    text: "Paras used Leech!\nLeading player have to drink 2, and move two squares back"
+    text: "Paras used Leech!\nLeading player has to drink 2, and move two squares back"
     poke_api_image: "pokemon/paras"
 
   # Cerulean City
@@ -109,7 +109,7 @@ tiles:
     image_scale: 0.2
     image_margin_top: 65
     text_margin_top: 20
-    text: "Roll a die. Drink half (round up). What is this guys deal, anyway?"
+    text: "Roll a die. Drink half (round up). What is this guy's deal, anyway?"
 
   - name: Poke Center
     header: Poke Center
@@ -127,7 +127,7 @@ tiles:
     header: Cerulean Gym
     text: |
       Starmie: 3/5
-      **Special:** +1 Attack if damaged
+      **Special:** +1 ATK if damaged
       **Faint:** Drink 2
       **Flash:** Everyone else drinks 1
     local_image: gym-cerulean.png
@@ -212,7 +212,7 @@ tiles:
     text: |
       Cubone tells you about his mother...
       Listen respectfully: Everyone drinks 1
-      Skip: Drink 5, gut an extra turn
+      Skip: Drink 5, get an extra turn
     poke_api_image: "pokemon/cubone"
     background_color: "rock_tunnel"
 
@@ -252,11 +252,12 @@ tiles:
 
   - name: pokemon_tower
     header: Pokemon Tower
-    text: "While in the Pokemon Tower, out of respect for the dead, you should not speak. Doing so reults in 2 drinks."
+    text: "While in the Pokemon Tower, out of respect for the dead, you should not speak. Doing so results in 2 drinks."
     background_color: "pokemon_tower"
 
   - name: channeler
-    text: "A possesed Channeler. Now you're possesed to! While you are in this space, anyone may make you get them a drink"
+    text: |
+      A possessed Channeler. Now you're possessed too! While you are in this square, anyone may make you get them a drink
     local_image: channeler.png
     image_scale: 0.55
     image_margin_top: 10
@@ -294,7 +295,7 @@ tiles:
     image_margin_top: 60
     text_margin_top: 40
     text: |
-      Roll a die. Drink that number. Seriusly though, is this dude following you or something?
+      Roll a die. Drink that number. Seriously though, is this dude following you or something?
 
   - name: snorlax
     text: "A sleeping snorlax!\nStart singing a song! Anyone joining, avoids drinking 4. If no one joins, you solely drink 4."
@@ -312,9 +313,9 @@ tiles:
     text: |
       Vileplume: 3/7
       **Special:** Toxic, start round by drinking 1, add +1 every round.
-      **Faint:** Play with 2 dice (this gym)
+      **Faint:** Drink current toxicity. Reset toxicity
       **Flash:** Extra turn
-    image_scale: 0.45
+    image_scale: 0.4
     background_color: "gym"
 
   - name: mr_mime
@@ -338,11 +339,11 @@ tiles:
 
   - name: silph_co
     header: "Silph Co."
-    text: "You've infiltraded the headquarters of the infamous Team Rocket! if you receive drinks from other players while in this building, you get spotted, and have to return here"
+    text: "You've infiltrated the headquarters of the infamous Team Rocket! if you receive drinks from other players while in this building, you get spotted, and have to return here"
     background_color: "silph_co"
 
   - name: magneton
-    text: "Magneton used Magnet Rise!\nPull the two closest player 1 square towards you. Drink 2"
+    text: "Magneton used Magnet Rise!\nPull the two closest players 1 square towards you. Drink 2"
     poke_api_image: pokemon/magneton
     background_color: "silph_co"
 
@@ -353,7 +354,7 @@ tiles:
 
     # Charmander-starters må drikke 6?
   - name: lapras
-    text: "Lapras used Surf!\nAll players ahead of you must drink 3, and misses their next turn."
+    text: "Lapras used Surf!\nAll players ahead of you must drink 3, and miss their next turn."
     image_margin_top: -20
     text_margin_top: 5
     poke_api_image: pokemon/lapras
@@ -397,7 +398,7 @@ tiles:
     text_margin_top: 30
     text: |
       At every Safari Zone encounter, you get a Safari Ball! Optional:
-      Roll 5-6: Cought! Use it's move later
+      Roll 5-6: Caught! Use its move later
       Roll 3-4: Missed! Resolve tile normally
       Roll 1-2: You threw a rock! Pokemon is enraged
     background_color: safari_zone
@@ -406,12 +407,12 @@ tiles:
     text: |
       Tauros used Horn Attack! Choose:
       1. Move 1 square ahead, drink 1
-      2. Move 2 square ahead, drink 2
+      2. Move 2 squares ahead, drink 2
       **Enraged**: Move 4 back, drink 6
     background_color: safari_zone
     poke_api_image: pokemon/tauros
     image_margin_top: -45
-    text_margin_top: 0
+    text_margin_top: 15
 
   - name: chansey
     text: |
@@ -421,6 +422,7 @@ tiles:
     background_color: safari_zone
     poke_api_image: pokemon/chansey
     image_margin_top: -20
+    text_margin_top: 25
 
   - name: scyther
     text: |
@@ -428,7 +430,7 @@ tiles:
       Your drink is sliced in half! Drink half your drink, and move that many sips ahead. (Round down)
       **Enraged**: Move back instead
     image_margin_top: -45
-    text_margin_top: 0
+    text_margin_top: 5
     background_color: safari_zone
     poke_api_image: pokemon/scyther
 
@@ -443,6 +445,7 @@ tiles:
       **Enraged**: Drink double!
     image_scale: 0.6
     image_margin_top: -20
+    text_margin_top: -5
     background_color: safari_zone
     poke_api_image: pokemon/kangaskhan
 
@@ -471,7 +474,9 @@ tiles:
   - name: seafoam_islands
     header: Seafoam Islands
     background_color: seafoam_islands
-    text: To reach the islands safely, you'll have to surf across. While surfing, you may not, for any reason, touch the floor. If you do so, return back here and drink.
+    text: |
+      To reach the islands safely, you'll have to surf across. 
+      While surfing, you may not, for any reason, touch the floor. If you do so, return back here and drink 2.
 
   - name: dewgong
     text: "Dewgong used Whirlpool!\nEveryone takes a drink, and reverse the turn order!"
@@ -479,8 +484,8 @@ tiles:
     background_color: seafoam_islands
     image_margin_top: -20
 
-  - name: goldduck
-    text: "Goldduck used Fury Swipes! Roll a die.\nEven: Roll again\nOdd: Drink the number of times you rolled"
+  - name: golduck
+    text: "Golduck used Fury Swipes! Roll a die.\nEven: Roll again\nOdd: Drink the number of times you rolled"
     poke_api_image: pokemon/golduck
     background_color: seafoam_islands
     image_margin_top: -30
@@ -527,13 +532,13 @@ tiles:
     image_margin_top: -50
     text_margin_top: -5
     text: |
-      Electrode use self-destruct!
+      Electrode used Self-Destruct!
       **Start of turn:** Roll a die:
       5-6: BOOM! Finish your drink. You get knocked one square back by the blast.
       1-4: Close one! Drink 2 to calm your nerves
 
   - name: lickitung
-    text: Lickitung used Lick! Give 2, and stick your tounge out until your next turn.
+    text: Lickitung used Lick! Give 2, and stick your tongue out until your next turn.
     poke_api_image: pokemon/lickitung
 
   - name: golem
@@ -576,6 +581,7 @@ tiles:
     text: "Moltres used Sunny Day! A warm breeze heals all! All players move double on their next roll, and all status effects are lifted."
     poke_api_image: pokemon/moltres
     image_margin_top: -30
+    text_margin_top: 5
 
   - name: the_elite_four
     header: The Elite Four
