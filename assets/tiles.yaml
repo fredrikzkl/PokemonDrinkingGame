@@ -494,20 +494,23 @@ tiles:
   - name: pokemon_lab
     header: Cinnabar Lab
     local_image: cinnabar-lab-no-pkm.png
-    image_scale: 0.5
-    font_size: 16
+    image_scale: 0.45
+    text_align: left
+    text_margin_top: 10
+    image_margin_top: 30
+    font_size: 20
     text: |
-      You enter the laboratory (full of nerds). Trade your fossil for a permanent upgrade:
-      Aerodactyl: You may add +1 to any movement roll
-      Kabuto: Ancient luck! Pokeballs now catch on 2-6 rolls (instead of 4-6)
-      Omanyte: Reduce all drinks given to you by other players by half (rounded down)
+      Trade a fossil for an upgrade:
+      **Aerodactyl**: You may add +1 to any movement roll
+      **Kabuto**: Pokeballs now catch on 2-6 rolls (instead of 4-6)
+      **Omanyte**: Drinks from other players are halved (round down)
 
   - name: cinnabar_gym
     header: Cinnabar Gym
     local_image: gym-cinnabar.png
     image_scale: 0.5
     image_margin_top: 55
-    text_margin_top: 10
+    text_margin_top: 20
     text: |
       Arcanine: 5/5
       **Special:** Quiz! Each round, a player asks you trivia.
