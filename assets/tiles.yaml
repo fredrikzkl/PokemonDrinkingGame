@@ -433,14 +433,15 @@ tiles:
     poke_api_image: pokemon/scyther
 
   - name: kangaskhan
+    font_size: 20
     text: |
-      Kangaskhan used Comet Punch! Hot potato:
+      Kangaskhan used Comet Punch!
+      Hot potato! Roll a die:
       Roll 1-4: Pass the die to your left
       Roll 5-6: Hit! Drink the pass count, take next turn
       Full circle back to you? You're hit!
-      **Enraged**: Baby entered the chat - drink double!
-    image_scale: 0.7
-    font_size: 16
+      **Enraged**: Drink double!
+    image_scale: 0.6
     image_margin_top: -20
     background_color: safari_zone
     poke_api_image: pokemon/kangaskhan
