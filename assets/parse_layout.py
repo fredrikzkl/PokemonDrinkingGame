@@ -2,6 +2,15 @@
 Parse layout.txt to understand tile placement pattern.
 """
 
+def _split_sections(layout_file: str):
+    """Split layout file into sections separated by blank lines, ignoring comment lines."""
+    with open(layout_file, 'r') as f:
+        lines = [line for line in f.readlines() if not line.strip().startswith('#')]
+    content = ''.join(lines)
+    sections = [s.strip() for s in content.split('\n\n') if s.strip()]
+    return sections
+
+
 def parse_layout(layout_file: str = "assets/layout.txt"):
     """
     Parse the layout file and return a mapping of tile numbers to (row, col) positions.
@@ -9,13 +18,10 @@ def parse_layout(layout_file: str = "assets/layout.txt"):
     Returns:
         dict: {tile_number: (row, col), ...}
     """
-    with open(layout_file, 'r') as f:
-        lines = f.readlines()
-    
+    sections = _split_sections(layout_file)
     layout = {}
-    rows = len(lines)
-    
-    for row_idx, line in enumerate(lines):
+
+    for row_idx, line in enumerate(sections[0].splitlines()):
         cols = line.strip().split('-')
         for col_idx, cell in enumerate(cols):
             if cell != 'xx':
@@ -24,18 +30,41 @@ def parse_layout(layout_file: str = "assets/layout.txt"):
                     layout[tile_num] = (row_idx, col_idx)
                 except ValueError:
                     pass
-    
+
     return layout
+
+
+def parse_rotation_map(layout_file: str = "assets/layout.txt"):
+    """
+    Parse the rotation section of the layout file.
+
+    Returns:
+        dict: {(row, col): rotation_degrees, ...}
+        Rotation values: 0 (D=down), 90 (R=right), 180 (U=up), 270 (L=left)
+    """
+    sections = _split_sections(layout_file)
+    if len(sections) < 2:
+        return {}
+
+    rotation_map = {}
+    direction_to_degrees = {'D': 0, 'U': 180, 'L': 270, 'R': 90}
+
+    for row_idx, line in enumerate(sections[1].splitlines()):
+        cols = line.strip().split('-')
+        for col_idx, cell in enumerate(cols):
+            cell = cell.strip()
+            if cell in direction_to_degrees:
+                rotation_map[(row_idx, col_idx)] = direction_to_degrees[cell]
+
+    return rotation_map
 
 
 def get_board_dimensions(layout_file: str = "assets/layout.txt"):
     """Get board dimensions from layout file."""
-    with open(layout_file, 'r') as f:
-        lines = f.readlines()
-    
+    sections = _split_sections(layout_file)
+    lines = sections[0].splitlines()
     rows = len(lines)
     cols = len(lines[0].strip().split('-'))
-    
     return rows, cols
 
 

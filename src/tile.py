@@ -23,6 +23,7 @@ class Tile:
         footer: Optional[str] = None,
         background_image: Optional[str] = None,
         text_margin_top: int = 0,
+        text_align: str = "center",
     ):
         self.width = width
         self.height = height
@@ -39,6 +40,7 @@ class Tile:
         self.font_size = font_size
         self.footer = footer
         self.background_image = background_image
+        self.text_align = text_align
         self.text_margin_top = text_margin_top
 
     def _get_font(self, size: int, font_type: str = "text") -> ImageFont.ImageFont:
@@ -256,6 +258,11 @@ class Tile:
                 styled_lines = []
 
                 for paragraph in paragraphs:
+                    stripped = paragraph.strip()
+                    if not stripped or stripped == "\\n":
+                        styled_lines.append(None)
+                        continue
+
                     styled_words = self._parse_styled_words(paragraph)
                     current_line = []
 
@@ -287,10 +294,17 @@ class Tile:
                     y = (self.height - total_text_height) // 2 + self.text_margin_top
 
                 for styled_line in styled_lines:
+                    if styled_line is None:
+                        y += line_height // 2
+                        continue
                     line_text = " ".join(w for w, _ in styled_line)
                     bbox = draw.textbbox((0, 0), line_text, font=font)
                     total_width = bbox[2] - bbox[0]
-                    start_x = (self.width - total_width) // 2
+                    padding = 10
+                    if self.text_align == "left":
+                        start_x = padding + self.border_width
+                    else:
+                        start_x = (self.width - total_width) // 2
 
                     segments = self._group_line_segments(styled_line)
                     char_pos = 0

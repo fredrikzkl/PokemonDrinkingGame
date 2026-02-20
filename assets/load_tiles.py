@@ -121,6 +121,7 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
             footer=tile_def.get("footer"),
             background_image=background_image,
             text_margin_top=tile_def.get("text_margin_top", 0),
+            text_align=tile_def.get("text_align", "center"),
         )
         tiles.append(tile)
 
@@ -222,6 +223,7 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
                 footer=tile_def.get("footer"),
                 background_image=background_image,
                 text_margin_top=tile_def.get("text_margin_top", 0),
+                text_align=tile_def.get("text_align", "center"),
             )
             tiles.append(tile)
         else:

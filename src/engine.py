@@ -85,10 +85,10 @@ class BoardGameEngine:
             tile_image: PIL Image of the tile
         """
         if 0 <= row < self.board_rows and 0 <= col < self.board_cols:
-            # Resize tile to match engine dimensions
-            tile_image = tile_image.resize(
-                (self.tile_width, self.tile_height), Image.Resampling.LANCZOS
-            )
+            if tile_image.size != (self.tile_width, self.tile_height):
+                tile_image = tile_image.resize(
+                    (self.tile_width, self.tile_height), Image.Resampling.LANCZOS
+                )
             self.tiles[row][col] = tile_image
         else:
             raise IndexError(f"Position ({row}, {col}) is out of bounds")
@@ -125,29 +125,22 @@ class BoardGameEngine:
 
     def export_image(self, output_path: str, dpi: int = 300):
         """
-        Export the board as a high-resolution image.
+        Export the board as an image. Tiles are already rendered at their
+        target pixel size, so no upscaling is done.
 
         Args:
             output_path: Path to save the image
-            dpi: Dots per inch for print quality
+            dpi: DPI metadata tag (for print sizing, does not change pixels)
         """
         board = self.render_board()
 
-        # Scale up for print quality (assuming 72 DPI base)
-        scale_factor = dpi / 72.0
-        new_width = int(board.width * scale_factor)
-        new_height = int(board.height * scale_factor)
-
-        board_high_res = board.resize((new_width, new_height), Image.Resampling.LANCZOS)
-
-        # Ensure output directory exists
         os.makedirs(
             os.path.dirname(output_path) if os.path.dirname(output_path) else ".",
             exist_ok=True,
         )
 
-        board_high_res.save(output_path, dpi=(dpi, dpi))
-        print(f"Board exported to {output_path} at {dpi} DPI")
+        board.save(output_path, dpi=(dpi, dpi))
+        print(f"Board exported to {output_path} ({board.width}x{board.height}px, {dpi} DPI)")
 
     def export_image_exact_size(
         self, output_path: str, width_mm: float, height_mm: float, dpi: int = 300

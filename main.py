@@ -1,39 +1,24 @@
 from src import BoardGameEngine
 from assets.load_tiles import load_tiles_from_yaml
-from assets.parse_layout import parse_layout, get_board_dimensions, get_tile_connections
+from assets.parse_layout import parse_layout, get_board_dimensions, get_tile_connections, parse_rotation_map
 from PIL import Image
 import os
 import sys
 
 
-def rotate_tile_for_position(
-    tile_image: Image.Image, row: int, col: int, total_rows: int, total_cols: int
-) -> Image.Image:
-    """
-    Rotate tile based on its position so people around a table can read it.
+TRANSPOSE_MAP = {
+    90: Image.Transpose.ROTATE_90,
+    180: Image.Transpose.ROTATE_180,
+    270: Image.Transpose.ROTATE_270,
+}
 
-    - Top row (row 0): Rotate 180°
-    - Left column (col 0): Rotate 180°
-    - Right column (col n-1): Rotate 90° clockwise (eastern)
-    - Other tiles: No rotation
-    """
-    is_top = row == 0
-    is_left = col == 0
-    is_right = col == total_cols - 1
-
-    # Priority: left column > top row > right column
-    # Left column: 180° rotation
-    if is_left:
-        return tile_image.rotate(270, expand=True)
-    # Top row: 180° rotation
-    elif is_top:
-        return tile_image.rotate(180, expand=True)
-    # Right column (eastern): 90° clockwise
-    elif is_right:
-        return tile_image.rotate(90, expand=True)
-    # All other tiles: no rotation
-    else:
+def rotate_tile(tile_image: Image.Image, degrees: int) -> Image.Image:
+    """Rotate tile using lossless transpose for 90-degree increments."""
+    if degrees == 0:
         return tile_image
+    if degrees in TRANSPOSE_MAP:
+        return tile_image.transpose(TRANSPOSE_MAP[degrees])
+    return tile_image.rotate(degrees, expand=True)
 
 
 def create_board_from_yaml(
@@ -55,12 +40,13 @@ def create_board_from_yaml(
     layout = parse_layout(layout_file)
     board_rows, board_cols = get_board_dimensions(layout_file)
     tile_connections = get_tile_connections(layout_file)
+    rotation_map = parse_rotation_map(layout_file) if tile_rotation else {}
     
     print(f"Board layout: {board_rows}x{board_cols} (from {layout_file})")
     print(f"Layout defines {len(layout)} tile positions")
     
     if tile_rotation:
-        print("Tile rotation enabled: tiles will be rotated for table play")
+        print(f"Tile rotation enabled: {len(rotation_map)} rotation entries loaded")
     
     # Initialize engine
     engine = BoardGameEngine(
@@ -80,11 +66,8 @@ def create_board_from_yaml(
             row, col = layout[tile_number]
             tile_image = tile.render()
             
-            # Apply rotation if flag is set
-            if tile_rotation:
-                tile_image = rotate_tile_for_position(
-                    tile_image, row, col, board_rows, board_cols
-                )
+            if tile_rotation and (row, col) in rotation_map:
+                tile_image = rotate_tile(tile_image, rotation_map[(row, col)])
             
             engine.set_tile(row, col, tile_image)
             placed_count += 1

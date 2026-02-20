@@ -60,10 +60,11 @@ tiles:
     header: Pewter Gym
     text: |
       Onix: 3/4
-      Faint: Drink 2
-      Flash: Get a Pokeball!
+      **Faint:** Drink 2
+      **Flash:** Get a Pokeball!
     local_image: gym-pewter.png
-    image_scale: 0.5
+    image_scale: 0.65
+    text_margin_top: 40
     image_margin_top: 60
     background_color: "gym"
 
@@ -79,7 +80,8 @@ tiles:
     local_image: super-nerd.png
     background_color: "optional_stop"
     image_scale: 0.45
-    image_margin_top: 20
+    image_margin_top: 30
+    text_margin_top: 30
     text: |
       A Super Nerd won't shut up about fossils. Drink 2 to survive the conversation. You receive a Fossil.
 
@@ -93,11 +95,13 @@ tiles:
     local_image: "poke-mart.png"
     image_scale: 0.3
     image_margin_top: 60
+    text_margin_top: 15
+    text_align: left
     text: |
-      Purchasing options:
-      Potion (2 drinks): Block a drinking request
-      Repel (3 drinks): Ignore the effect of a pokemon you encounter
-      Pokeball (4 drinks)
+      Optional: Buy one item
+      **Potion** (2 drinks): Negate 1 drinking effect from any source
+      **Repel** (3 drinks): Skip a pokemon encounter
+      **Pokeball** (4 drinks)
 
   - name: Gary
     header: Gary
@@ -112,6 +116,7 @@ tiles:
     local_image: "poke-center.png"
     image_scale: 0.3
     image_margin_top: 60
+    text_margin_top: 20
     text: |
       Your Pokemon are fully restored! You, however, look terrible. 
       Optional: Replace your drink with water. Drink 4.
@@ -122,11 +127,13 @@ tiles:
     header: Cerulean Gym
     text: |
       Starmie: 3/5
-      Special: +1 Attack if damaged
-      Faint: Drink 2
-      Flash: Everyone else drinks 1
-    poke_api_image: pokemon/starmie
-    image_scale: 0.5
+      **Special:** +1 Attack if damaged
+      **Faint:** Drink 2
+      **Flash:** Everyone else drinks 1
+    local_image: gym-cerulean.png
+    image_scale: 0.45
+    image_margin_top: 50
+    text_margin_top: 40
     background_color: "gym"
 
   - name: Slowpoke
@@ -134,6 +141,7 @@ tiles:
       For the first one here, make up a gesture. For the rest of the game, when you do it, the last to mimic takes a drink
     poke_api_image: "pokemon/slowpoke"
     image_margin_top: -10
+    text_margin_top: 20
 
   - name: SS Anne
     header: SS Anne
@@ -145,14 +153,13 @@ tiles:
   - name: Magikarp
     text: "Magikarp used Splash!\nBut nothing happened..."
     poke_api_image: "pokemon/magikarp"
-    image_scale: 1.1
-    image_margin_top: -30
+    image_scale: 0.8
 
   - name: Pokemon Stadium
     header: "Stadium"
     local_image: "stadium.png"
-    text_margin_top: 20
     image_anchor_bottom: true
+    text_margin_top: 20
     text: "Challenge a player to a trainer battle. If you win, swap places. Lost? Drink 4"
 
   - name: Tentacool
@@ -162,6 +169,7 @@ tiles:
     poke_api_image: "pokemon/tentacool"
     image_scale: 0.8
     image_margin_top: -20
+    text_margin_top: 10
 
   - name: Spearow
     text: |
@@ -170,18 +178,20 @@ tiles:
     poke_api_image: "pokemon/spearow"
     image_scale: 1.1
     image_margin_top: -60
+    text_margin_top: 15
 
   # Natural - no weakness
   - name: Vermilion Gym
     header: Vermilion Gym
     text: |
       Raichu: 4/4
-      Spencial: Raichu Starts
-      Faint: Drink 2
-      Flash: You get a Repel
-    poke_api_image: pokemon/raichu
-    image_scale: 0.5
-    image_margin_top: 20
+      **Special:** Raichu Starts
+      **Faint:** Drink 2
+      **Flash:** You get a Repel
+    local_image: gym-vermilion.png
+    image_scale: 0.7
+    image_margin_top: 60
+    text_margin_top: 40
     background_color: "gym"
 
   # Rock Tunnel
@@ -202,7 +212,7 @@ tiles:
     text: |
       Cubone tells you about his mother...
       Listen respectfully: Everyone drinks 1
-      Skip: Drink 5, get an extra turn
+      Skip: Drink 5, gut an extra turn
     poke_api_image: "pokemon/cubone"
     background_color: "rock_tunnel"
 
@@ -219,17 +229,26 @@ tiles:
     image_margin_top: -70
 
   - name: machoke
-    text: "Machoke used Power-Up Punch! Roll a die.\n1-4: Move back & drink that many.\n5-6: Dodge! Player to your right drinks 4"
+    text: |
+      Machoke used Power-Up Punch! Roll a die.
+      1-4: Move back and drink that many.
+      5-6: Dodge! Player to your right drinks 4
     poke_api_image: "pokemon/machoke"
     background_color: "rock_tunnel"
-    image_scale: 0.75
+    image_scale: 0.7
     image_margin_top: -25
+    text_margin_top: 10
 
     # One square lavender town
   - name: lavender_town
     header: "Lavender Town"
+    # local_image: "lavender-town.png"
+    # image_anchor_bottom: true
+    text_margin_top: 30
     text: |
-      Creepy soundtrack. There is PokeCenter and a PokeMart in this town. You may visit one of the one of them.
+      The spirits are restless. While on this square, any drink given to you is also taken by the giver.
+
+      There is a PokeCenter and a PokeMart in this town. You may visit one of them.
 
   - name: pokemon_tower
     header: Pokemon Tower
@@ -244,7 +263,12 @@ tiles:
     background_color: "pokemon_tower"
 
   - name: gastly
-    text: "Gaslty uses Confuse Ray!\nYou are now confused for two rounds"
+    text: |
+      Gastly used Confuse Ray! You are confused!
+      Before each turn, roll a die:
+      Even: Drink 2, move 2 less
+      Odd: You snap out of confusion
+    image_margin_top: -25
     poke_api_image: "pokemon/gastly"
     background_color: "pokemon_tower"
 
@@ -261,13 +285,14 @@ tiles:
       Curse now in frustration!
     background_color: "pokemon_tower"
     poke_api_image: "pokemon/hypno"
+    text_margin_top: 30
 
   - name: Gary
     header: Gary
     local_image: "gary-2.png"
     image_scale: 0.3
     image_margin_top: 60
-    text_margin_top: 30
+    text_margin_top: 40
     text: |
       Roll a die. Drink that number. Seriusly though, is this dude following you or something?
 
@@ -281,19 +306,21 @@ tiles:
     # Advantages: Charmander
   - name: Celadon Gym
     header: "Celadon Gym"
-    poke_api_image: pokemon/vileplume
+    local_image: gym-celadon.png
+    image_margin_top: 55
+    text_margin_top: 30
     text: |
       Vileplume: 3/7
-      Special: Toxic; drink 1 at the start of each round. Increases by 1 every round.
-      Faint: You play with 2 dice (this gym)
-      Flash: Get an extra turn
-    image_scale: 0.5
-    font_size: 13
+      **Special:** Toxic, start round by drinking 1, add +1 every round.
+      **Faint:** Play with 2 dice (this gym)
+      **Flash:** Extra turn
+    image_scale: 0.45
     background_color: "gym"
 
   - name: mr_mime
     text: "Mr. Mime mini game! Mime anything. Guessed? You + guesser may move 1, or add 1 to your roll next turn. No guess? Drink 5."
     poke_api_image: pokemon/mr-mime
+    image_margin_top: -30
 
   - name: saffron_city_mall
     header: "Saffron City Mall"
@@ -327,6 +354,8 @@ tiles:
     # Charmander-starters må drikke 6?
   - name: lapras
     text: "Lapras used Surf!\nAll players ahead of you must drink 3, and misses their next turn."
+    image_margin_top: -20
+    text_margin_top: 5
     poke_api_image: pokemon/lapras
     background_color: "silph_co"
 
@@ -338,13 +367,13 @@ tiles:
     local_image: team-rocket.png
     image_scale: 0.4
     image_margin_top: 60
-    text_margin_top: 30
+    text_margin_top: 35
     background_color: "silph_co"
 
   - name: giovanni
     header: Giovanni
     local_image: giovanni.png
-    image_scale: 0.25
+    image_scale: 0.275
     image_margin_top: 60
     text_margin_top: 20
     text: "Preying on the weak! Last place moves 3 squares back and drinks 3. If you are last place, you receive the Master Ball instead (once)"
@@ -354,18 +383,18 @@ tiles:
     header: Saffron Gym
     text: |
       Alakazam: ?/?
-      Special: Roll 2 dice to set ATK/HP
-      Faint: Drink a die roll. Reroll Alakazam's stats
-      Flash: Pick your next movement roll
-    poke_api_image: pokemon/alakazam
-    image_scale: 0.45
-    image_margin_top: 25
-    font_size: 13
+      **Special:** Roll 1 die for ATK, 1 for HP to set Alakazam's stats
+      **Faint:** Drink a die roll. Reroll Alakazam's stats
+      **Flash:** Select your next move roll
+    local_image: gym-saffron.png
+    image_scale: 0.5
+    text_margin_top: 20
+    image_margin_top: 55
     background_color: gym
 
   - name: safari_zone
     header: Safari Zone
-    text_margin_top: 20
+    text_margin_top: 30
     text: |
       At every Safari Zone encounter, you get a Safari Ball! Optional:
       Roll 5-6: Cought! Use it's move later
@@ -378,17 +407,17 @@ tiles:
       Tauros used Horn Attack! Choose:
       1. Move 1 square ahead, drink 1
       2. Move 2 square ahead, drink 2
-      Enraged: Move 6 back and drink 6
+      **Enraged**: Move 4 back, drink 6
     background_color: safari_zone
     poke_api_image: pokemon/tauros
     image_margin_top: -45
-    text_margin_top: -20
+    text_margin_top: 0
 
   - name: chansey
     text: |
       Chansey used Heal Bell!
       Replace your current drink with non-alcoholic
-      Enraged: Flees, drink 2 (dick)
+      **Enraged**: Flees, drink 2 (dick)
     background_color: safari_zone
     poke_api_image: pokemon/chansey
     image_margin_top: -20
@@ -397,9 +426,9 @@ tiles:
     text: |
       Scyther used Slash!
       Your drink is sliced in half! Drink half your drink, and move that many sips ahead. (Round down)
-      Enraged: Move back instead
+      **Enraged**: Move back instead
     image_margin_top: -45
-    text_margin_top: -20
+    text_margin_top: 0
     background_color: safari_zone
     poke_api_image: pokemon/scyther
 
@@ -409,7 +438,7 @@ tiles:
       Roll 1-4: Pass the die to your left
       Roll 5-6: Hit! Drink the pass count, take next turn
       Full circle back to you? You're hit!
-      Enraged: Baby entered the chat - drink double!
+      **Enraged**: Baby entered the chat - drink double!
     image_scale: 0.7
     font_size: 16
     image_margin_top: -20
@@ -419,13 +448,15 @@ tiles:
   # Fuchsia city
   - name: fuchsia_gym
     header: Fuchsia Gym
-    poke_api_image: pokemon/weezing
-    image_scale: 0.5
+    local_image: gym-fuchsia.png
+    image_scale: 0.6
+    image_margin_top: 45
+    text_margin_top: 20
     text: |
       Weezing: 3/5
-      Special: Weezing self-destructs if killed on the first round. You must finish your drink.
-      Faint: Drink 3
-      Flash: Give 2 drinks
+      **Special:** If killed round 1, Self-Destruct! Finish your drink.
+      **Faint:** The gas gets you. Drink 3 with your nose plugged.
+      **Flash:** Give 3 drinks
     background_color: gym
 
   - name: muk
@@ -445,11 +476,13 @@ tiles:
     text: "Dewgong used Whirlpool!\nEveryone takes a drink, and reverse the turn order!"
     poke_api_image: pokemon/dewgong
     background_color: seafoam_islands
+    image_margin_top: -20
 
   - name: goldduck
     text: "Goldduck used Fury Swipes! Roll a die.\nEven: Roll again\nOdd: Drink the number of times you rolled"
     poke_api_image: pokemon/golduck
     background_color: seafoam_islands
+    image_margin_top: -30
 
   - name: articuno
     text: "Articuno used Blizzard!\nYou are frozen in place! You may roll odd to break free, even results in 2 missed turns. Or do nothing, miss 1 turn"
@@ -471,15 +504,16 @@ tiles:
 
   - name: cinnabar_gym
     header: Cinnabar Gym
-    poke_api_image: pokemon/arcanine
-    image_scale: 0.4
-    image_margin_top: 40
+    local_image: gym-cinnabar.png
+    image_scale: 0.5
+    image_margin_top: 55
+    text_margin_top: 10
     text: |
       Arcanine: 5/5
-      Special: Before each round, answer a quiz question from another player. Correct = Immune to his attack
-      Faint: Drink 4
-      Flash: Bonus turn
-    font_size: 12
+      **Special:** Quiz! Each round, a player asks you trivia.
+      Correct = block his attack
+      **Faint:** Burned! Drink 4
+      **Flash:** You get a Potion
     background_color: gym
 
   # Both Golem and Zapdos sends the player back here. Should be a "At start of turn" effect
@@ -487,7 +521,7 @@ tiles:
     poke_api_image: pokemon/electrode
     image_scale: 0.8
     image_margin_top: -50
-    text_margin_top: -20
+    text_margin_top: -5
     text: |
       Electrode use self-destruct!
       **Start of turn:** Roll a die:
@@ -513,13 +547,15 @@ tiles:
 
   - name: viridian_gym
     header: Viridian Gym
-    poke_api_image: pokemon/rhydon
-    image_scale: 0.5
+    local_image: gym-viridian.png
+    image_margin_top: 60
+    image_scale: 0.45
+    text_margin_top: 20
     text: |
       Rhydon: ?/6
-      Special: ATK is rolled each round
-      Faint: Drink the ATK roll from Rhydon
-      Flash: Last place must drink 3. Classic Giovanni move.
+      **Special:** ATK is rolled each round
+      **Faint:** Drink Rhydon's last ATK roll
+      **Flash:** Last place must drink 4.
     background_color: gym
 
   - name: dragonite
@@ -541,19 +577,20 @@ tiles:
     header: The Elite Four
     local_image: elite-four.png
     image_margin_top: 70
+    text_margin_top: 20
     text: |
       Elite four: 4/10
-      Special: You fight with 4 dice
-      Faint: Drink 4
-      Flash: Advance to Champion!
+      **Special:** You fight with 4 dice
+      **Faint:** Drink 4
+      **Flash:** Advance to Champion!
     background_color: gym
 
   - name: champion_gary
     header: Champion Gary
     local_image: "gary-3.png"
     image_scale: 0.33
-    image_margin_top: 60
-    text_margin_top: 35
+    image_margin_top: 55
+    text_margin_top: 50
     text: |
       Fill up your drink. Finish it to take down this bastard for the last time.
     background_color: gym

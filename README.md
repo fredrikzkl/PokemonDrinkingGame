@@ -75,3 +75,13 @@ python main.py --example          # Create example board (no YAML)
 
 - `output/board_tiles.png` - High-resolution image
 - `output/board_tiles.pdf` - Printable PDF
+
+### Watch Mode
+
+Auto-rebuild the board whenever you save a file:
+
+```bash
+python watch.py --tileRotation
+```
+
+This watches `assets/tiles.yaml`, `assets/layout.txt`, `assets/images/`, and `src/` for changes and rebuilds automatically. Press `Ctrl+C` to stop.
