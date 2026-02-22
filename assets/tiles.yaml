@@ -40,7 +40,9 @@ tiles:
   #   background_color: "viridian_forest"
 
   - name: Weedle
-    text: "Drink 2. Next time someone passes you, they must stop at whatever square you're on"
+    text: |
+      Weedle used Poison Sting!
+      Drink 2. Next time someone passes you, they must stop at whatever square you're on
     poke_api_image: "pokemon/weedle"
     background_color: "viridian_forest"
 
@@ -50,7 +52,9 @@ tiles:
     background_color: "viridian_forest"
 
   - name: Beedrill
-    text: "Beedrill used Twineedle!\nPick two players to drink 2"
+    text: |
+      Beedrill used Twineedle!
+      Pick two players to drink 2
     poke_api_image: "pokemon/beedrill"
     background_color: "viridian_forest"
 
@@ -99,9 +103,9 @@ tiles:
     text_align: left
     text: |
       Optional: Buy one item
-      **Potion** (2 drinks): Negate 1 drinking effect from any source
-      **Repel** (3 drinks): Skip a pokemon encounter
-      **Pokeball** (4 drinks)
+      **Potion** (1 drink): Negate 1 drinking effect from any source
+      **Repel** (2 drinks): Skip a pokemon encounter
+      **Pokeball** (3 drinks)
 
   - name: Gary
     header: Gary
@@ -242,8 +246,7 @@ tiles:
     # One square lavender town
   - name: lavender_town
     header: "Lavender Town"
-    # local_image: "lavender-town.png"
-    # image_anchor_bottom: true
+    local_background_image: "lavender-town.png"
     text_margin_top: 30
     text: |
       The spirits are restless. While on this square, any drink given to you is also taken by the giver.

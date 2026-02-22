@@ -119,11 +119,11 @@ class Tile:
 
         if self.background_image:
             try:
-                bg_img = Image.open(self.background_image).convert("RGB")
+                bg_img = Image.open(self.background_image).convert("RGBA")
                 bg_img = bg_img.resize(
                     (self.width, self.height), Image.Resampling.LANCZOS
                 )
-                img.paste(bg_img, (0, 0))
+                img.paste(bg_img, (0, 0), bg_img)
             except Exception as e:
                 print(f"Warning: Could not load background image {self.background_image}: {e}")
 

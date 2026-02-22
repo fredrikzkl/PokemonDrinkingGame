@@ -12,6 +12,15 @@
 8. Forced movement from other players doesn't trigger the square you land on, unless it has a "Start of turn" effect.
 9. **Start of turn:** tiles with this keyword trigger every turn you remain there, including if forced there by another player.
 
+## Starter Draft
+
+Before the game begins, each player secretly writes down their starter Pokemon: **Bulbasaur**, **Charmander**, or **Squirtle**. Reveal all at once.
+
+Your starter determines type advantage in Trainer Battles (roll 2 dice, take the higher):
+- Bulbasaur (Grass) > Squirtle (Water)
+- Squirtle (Water) > Charmander (Fire)
+- Charmander (Fire) > Bulbasaur (Grass)
+
 ## Drinking
 
 The standard drink is a 0.33 beer, with 4.5% abv. One "drink", consists of 10 sips.
@@ -26,6 +35,16 @@ If you land on the same square as another player, you must battle!
 2. If your starter is super effective against theirs, roll 2 dice and take the higher.
 3. Loser drinks 2.
 4. Tie: both drink 1.
+
+## Items
+
+**Pokeball / Safari Ball:** When landing on a Pokemon square, you may throw your ball *before* the effect occurs. Roll 4-6 to catch (Safari Ball: see Safari Zone rules). If caught, the square's effect is skipped and you keep the Pokemon for later use. **Master Ball** has a 100% catch rate.
+
+**Using a caught Pokemon:** On your turn, before your movement roll, you may use a caught Pokemon's move on any player of your choice. The effect resolves immediately. Each caught Pokemon can only be used once.
+
+**Repel:** Declare *before* the effect occurs. Skip the Pokemon encounter entirely.
+
+**Potion:** Can be used at any time when you are about to drink. Negates 1 drinking effect from any source.
 
 ## Gym Mechanics
 
