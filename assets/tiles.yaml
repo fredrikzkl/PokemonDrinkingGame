@@ -163,8 +163,11 @@ tiles:
     header: "Stadium"
     local_image: "stadium.png"
     image_anchor_bottom: true
-    text_margin_top: 20
-    text: "Challenge a player to a trainer battle. If you win, swap places. Lost? Drink 4"
+    text_margin_top: 40
+    text: |
+      Challenge a player to a trainer battle. If you win, swap places. 
+      Lost? Drink 4. 
+      Play until a winner is crowned.
 
   - name: Tentacool
     text: |
@@ -194,7 +197,7 @@ tiles:
       **Flash:** You get a Repel
     local_image: gym-vermilion.png
     image_scale: 0.7
-    image_margin_top: 80
+    image_margin_top: 90
     text_margin_top: 40
     background_color: "gym"
 
@@ -462,7 +465,7 @@ tiles:
     text_margin_top: 20
     text: |
       Weezing: 3/5
-      **Special:** If killed round 1, Self-Destruct! Finish your drink.
+      **Special:** If defeated round 1, Self-Destruct! Finish your drink.
       **Faint:** The gas gets you. Drink 3 with your nose plugged.
       **Flash:** Give 3 drinks
     background_color: gym

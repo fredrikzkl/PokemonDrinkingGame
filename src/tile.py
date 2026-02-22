@@ -232,7 +232,7 @@ class Tile:
                 font = self._get_font(font_size, font_type="text")
 
                 # Calculate available space for text
-                padding = 10
+                padding = max(10, self.width // 30)
                 available_width = self.width - (padding * 2) - (self.border_width * 2)
 
                 # Account for header space
@@ -311,7 +311,7 @@ class Tile:
                     line_text = " ".join(w for w, _ in styled_line)
                     bbox = draw.textbbox((0, 0), line_text, font=font)
                     total_width = bbox[2] - bbox[0]
-                    padding = 10
+                    padding = max(10, self.width // 30)
                     if self.text_align == "left":
                         start_x = padding + self.border_width
                     else:

@@ -6,7 +6,7 @@
 2. You may only leave the table when it is not your turn. No fleeing from battles!
 3. Breaking any rules results in a drink
 4. If you land on the same square as someone, you must challenge them to a trainer battle
-5. Gold squares are gyms. You must stop at all gold squares, whether or not your die roll places you beyond them. If you have completed a Gym, you neither have to re-do it nor stop at it, if you land on the same gym later.
+5. Gold squares are gyms. You must stop at all gold squares, whether or not your die roll places you beyond them. If you have completed a Gym, you neither have to re-do it nor stop at it.
 6. Players in a gym are immune to movement effects from others, and cannot be challenged to trainer battles.
 7. Colored squares belong to a "Zone", where additional rules are in effect. Expect more drinks!
 8. Forced movement from other players doesn't trigger the square you land on, unless it has a **Start of turn** effect.
@@ -49,32 +49,36 @@ If you land on the same square as another player, you must battle!
 
 ## Gym Mechanics
 
-Grab 3 dice. Split them as you like: Attack & Defence.
+Grab 3 dice. Split them however you like between Attack and Defence.
+Gym stats are shown as **ATK/HP**
+(e.g. 3/4 = 3 Attack, 4 Health).
 
-1. You attack: Highest attack die = your damage.
-Beat their hp? You win instantly. If they survive, their hp is reduced until next round.
+Each round has two phases:
 
-2. They attack: Their attack versus your highest defence die. If their attack is greater than your defence, you faint.
-You start the whole encounter from the start.
+1. **You attack:** Your highest ATK die = your damage. If it equals or beats their remaining HP, you win! Otherwise, their HP is reduced by your damage.
 
-Opponent
+2. **They attack:** Their ATK vs your highest DEF die. If their ATK is higher, you faint and restart the fight from scratch.
 
-- **Special**: Special rule for this fight
-- **Faint**: What happens if you faint
-- **Flash**: What happens if you win, without fainting
+If both survive, the fight continues on your next turn.
+
+Each gym has:
+
+**Special:** A unique rule for this fight
+**Faint:** Penalty when you faint
+**Flash:** Reward for winning without fainting
 
 ### Example
 
 **Pewter Gym - Onix: 3/4** (3 ATK, 4 HP). Faint: Drink 2. Flash: Get a Pokeball!
 
-You grab 3 dice and split them: 2 Attack, 1 Defence.
+You split your 3 dice: 2 for Attack, 1 for Defence.
 
-**Round 1:** You roll ATK: 4, 3. Your highest = 4. Onix has 4 HP, so 4 >= 4: you beat Onix instantly! Flash: You get a Pokeball!
+**Round 1:** You roll ATK: 4, 3. Highest = 4. Onix HP is 4. 4 >= 4: Onix is defeated! Flash: You get a Pokeball!
 
-But what if your ATK was lower?
+Now imagine your ATK was lower:
 
-**Round 1 (alternate):** You roll ATK: 3, 2. Highest = 3. Onix has 4 HP. 3 < 4, so Onix survives with 1 HP remaining. Onix attacks: ATK 3 vs your DEF die: you rolled 5. 3 < 5, you defend successfully!
+**Round 1:** You roll ATK: 3, 2. Highest = 3. Onix has 4 HP. 3 < 4, Onix survives at 1 HP. Onix attacks: its ATK (3) vs your DEF die (5). 3 < 5: you defend!
 
-**Round 2:** You roll ATK: 2, 1. Highest = 2. Onix has 1 HP left. 2 >= 1: Onix is defeated! Flash: Pokeball!
+**Round 2:** You roll ATK: 2, 1. Highest = 2. Onix has 1 HP. 2 >= 1: Onix is down! Flash: Pokeball!
 
-**If you had failed defence:** Onix ATK 3 vs your DEF 2. 3 > 2: you faint! Drink 2, and restart the whole fight (Onix back to full HP).
+**Faint scenario:** Onix ATK (3) vs your DEF die (2). 3 > 2: you faint! Drink 2, restart the fight (Onix back to full HP).
