@@ -6,10 +6,10 @@
 2. You may only leave the table when it is not your turn. No fleeing from battles!
 3. Breaking any rules results in a drink
 4. If you land on the same square as someone, you must challenge them to a trainer battle
-5. Gold squares are gyms. You must stop at all gold squares, whether or not your die roll places you beyond them. If you have completed a Gym, you don't have to re-do it if you land on the same square later.
-6. Players on a gold square are immune to movement effects from others, and cannot be challenged to trainer battles.
+5. Gold squares are gyms. You must stop at all gold squares, whether or not your die roll places you beyond them. If you have completed a Gym, you neither have to re-do it nor stop at it, if you land on the same gym later.
+6. Players in a gym are immune to movement effects from others, and cannot be challenged to trainer battles.
 7. Colored squares belong to a "Zone", where additional rules are in effect. Expect more drinks!
-8. Forced movement from other players doesn't trigger the square you land on, unless it has a "Start of turn" effect.
+8. Forced movement from other players doesn't trigger the square you land on, unless it has a **Start of turn** effect.
 9. **Start of turn:** tiles with this keyword trigger every turn you remain there, including if forced there by another player.
 
 ## Starter Draft
@@ -17,6 +17,7 @@
 Before the game begins, each player secretly writes down their starter Pokemon: **Bulbasaur**, **Charmander**, or **Squirtle**. Reveal all at once.
 
 Your starter determines type advantage in Trainer Battles (roll 2 dice, take the higher):
+
 - Bulbasaur (Grass) > Squirtle (Water)
 - Squirtle (Water) > Charmander (Fire)
 - Charmander (Fire) > Bulbasaur (Grass)
@@ -58,13 +59,22 @@ You start the whole encounter from the start.
 
 Opponent
 
-* Special: Special rule for this fight
-* Faint: What happens if you faint
-* Flash: What happens if you win, without fainting
+- **Special**: Special rule for this fight
+- **Faint**: What happens if you faint
+- **Flash**: What happens if you win, without fainting
 
-Example:
-Onix: 2 / 3
-Onix has 2 in attack, 3 health
+### Example
 
-Faint: Drink 4
-Flash: Give 1 drink
+**Pewter Gym - Onix: 3/4** (3 ATK, 4 HP). Faint: Drink 2. Flash: Get a Pokeball!
+
+You grab 3 dice and split them: 2 Attack, 1 Defence.
+
+**Round 1:** You roll ATK: 4, 3. Your highest = 4. Onix has 4 HP, so 4 >= 4: you beat Onix instantly! Flash: You get a Pokeball!
+
+But what if your ATK was lower?
+
+**Round 1 (alternate):** You roll ATK: 3, 2. Highest = 3. Onix has 4 HP. 3 < 4, so Onix survives with 1 HP remaining. Onix attacks: ATK 3 vs your DEF die: you rolled 5. 3 < 5, you defend successfully!
+
+**Round 2:** You roll ATK: 2, 1. Highest = 2. Onix has 1 HP left. 2 >= 1: Onix is defeated! Flash: Pokeball!
+
+**If you had failed defence:** Onix ATK 3 vs your DEF 2. 3 > 2: you faint! Drink 2, and restart the whole fight (Onix back to full HP).

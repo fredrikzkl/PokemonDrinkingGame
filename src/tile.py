@@ -67,8 +67,7 @@ class Tile:
                     print(f"Warning: Could not load gbboot.ttf font: {e}")
         else:
             # Text uses gil.ttf (vector font - scales cleanly)
-            font_path = fonts_dir / "gil.ttf"
-            # font_path = fonts_dir / "pkmon_rby.ttf"  # pixel font - only looks good at specific sizes
+            font_path = fonts_dir / "gil.TTF"
             if font_path.exists():
                 try:
                     return ImageFont.truetype(str(font_path), size)
@@ -125,16 +124,22 @@ class Tile:
                 )
                 img.paste(bg_img, (0, 0), bg_img)
             except Exception as e:
-                print(f"Warning: Could not load background image {self.background_image}: {e}")
+                print(
+                    f"Warning: Could not load background image {self.background_image}: {e}"
+                )
 
         draw = ImageDraw.Draw(img)
 
-        # Draw border on all sides
+        # Draw border on right and bottom only (avoids double borders between adjacent tiles)
         if self.border_width > 0:
             for i in range(self.border_width):
-                draw.rectangle(
-                    [i, i, self.width - 1 - i, self.height - 1 - i],
-                    outline=self.border_color,
+                draw.line(
+                    [(self.width - 1 - i, 0), (self.width - 1 - i, self.height - 1)],
+                    fill=self.border_color,
+                )
+                draw.line(
+                    [(0, self.height - 1 - i), (self.width - 1, self.height - 1 - i)],
+                    fill=self.border_color,
                 )
 
         # Calculate header dimensions (needed for image positioning)
@@ -267,7 +272,9 @@ class Tile:
                     current_line = []
 
                     for word, is_bold in styled_words:
-                        test_text = " ".join(w for w, _ in current_line + [(word, is_bold)])
+                        test_text = " ".join(
+                            w for w, _ in current_line + [(word, is_bold)]
+                        )
                         bbox = draw.textbbox((0, 0), test_text, font=font)
                         test_width = bbox[2] - bbox[0]
 
@@ -289,7 +296,11 @@ class Tile:
                 total_text_height = len(styled_lines) * line_height
 
                 if self.image_path:
-                    y = text_y_start + (available_height - total_text_height) // 2 + self.text_margin_top
+                    y = (
+                        text_y_start
+                        + (available_height - total_text_height) // 2
+                        + self.text_margin_top
+                    )
                 else:
                     y = (self.height - total_text_height) // 2 + self.text_margin_top
 
@@ -322,6 +333,7 @@ class Tile:
                         draw.text((seg_x, y), seg_text, fill=self.text_color, font=font)
                         if is_bold:
                             draw.text((seg_x + 1, y), seg_text, fill=self.text_color, font=font)
+                            draw.text((seg_x + 2, y), seg_text, fill=self.text_color, font=font)
 
                         char_pos += len(seg_text)
                         if seg_idx < len(segments) - 1:
@@ -340,7 +352,7 @@ class Tile:
                 footer_width = footer_bbox[2] - footer_bbox[0]
                 footer_height = footer_bbox[3] - footer_bbox[1]
                 footer_x = (self.width - footer_width) // 2
-                footer_y = self.height - footer_height - self.border_width - 20
+                footer_y = self.height - footer_height - self.border_width - 60
                 draw.text(
                     (footer_x, footer_y),
                     self.footer,

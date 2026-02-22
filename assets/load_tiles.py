@@ -103,8 +103,8 @@ def load_tiles_from_yaml(yaml_path: str) -> List[Tile]:
 
         # Create tile with all provided parameters
         tile = Tile(
-            width=tile_def.get("width", 300),
-            height=tile_def.get("height", 300),
+            width=tile_def.get("width", 600),
+            height=tile_def.get("height", 600),
             header=tile_def.get("header"),
             text=tile_def.get("text"),
             image_path=image_path,
@@ -203,8 +203,8 @@ def load_tiles_by_name(yaml_path: str, names: List[str]) -> List[Tile]:
                 border_color = tuple(border_color)
 
             tile = Tile(
-                width=tile_def.get("width", 200),
-                height=tile_def.get("height", 200),
+                width=tile_def.get("width", 600),
+                height=tile_def.get("height", 600),
                 header=tile_def.get("header"),
                 text=tile_def.get("text"),
                 image_path=image_path,

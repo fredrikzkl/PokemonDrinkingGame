@@ -34,6 +34,30 @@ def parse_layout(layout_file: str = "assets/layout.txt"):
     return layout
 
 
+def parse_special_tiles(layout_file: str = "assets/layout.txt"):
+    """
+    Parse special (non-numeric, non-xx) tile codes from the layout.
+
+    Returns:
+        dict: {code: (row, col), ...} e.g. {'ru': (4, 3), 'tb': (4, 5)}
+    """
+    sections = _split_sections(layout_file)
+    specials = {}
+
+    for row_idx, line in enumerate(sections[0].splitlines()):
+        cols = line.strip().split('-')
+        for col_idx, cell in enumerate(cols):
+            cell = cell.strip()
+            if cell == 'xx':
+                continue
+            try:
+                int(cell)
+            except ValueError:
+                specials[cell] = (row_idx, col_idx)
+
+    return specials
+
+
 def parse_rotation_map(layout_file: str = "assets/layout.txt"):
     """
     Parse the rotation section of the layout file.
