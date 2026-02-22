@@ -12,11 +12,8 @@ dist/
 *.egg-info/
 
 # Output files
-# output/
 tiles/output/
-*.pdf
-*.png
-*.jpg
+assets/output/
 
 # Cached API images (can be regenerated)
 tiles/images/pokeapi/
