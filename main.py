@@ -79,14 +79,14 @@ def create_board_from_yaml(
     print(f"Placed {placed_count} tiles on board")
 
     # Export board
+    suffix = "_rotated" if tile_rotation else ""
     output_name = os.path.splitext(os.path.basename(yaml_file))[0]
-    engine.export_image(f"output/board_{output_name}.png", dpi=300)
-    engine.export_pdf(f"output/board_{output_name}.pdf")
+    engine.export_image(f"output/board_{output_name}{suffix}.png", dpi=300)
+    engine.export_pdf(f"output/board_{output_name}{suffix}.pdf")
 
     print(f"\n✓ Board created from {yaml_file}!")
-    print(f"Check the 'output' directory for:")
-    print(f"  - board_{output_name}.png")
-    print(f"  - board_{output_name}.pdf")
+    print(f"  - board_{output_name}{suffix}.png")
+    print(f"  - board_{output_name}{suffix}.pdf")
 
 
 if __name__ == "__main__":
