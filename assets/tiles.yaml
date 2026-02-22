@@ -249,7 +249,7 @@ tiles:
     local_background_image: "lavender-town.png"
     text_margin_top: 30
     text: |
-      The spirits are restless. While on this square, any drink given to you is also taken by the giver.
+      Spooky soundtrack. While on this square, any drink given to you is also taken by the giver.
 
       There is a PokeCenter and a PokeMart in this town. You may visit one of them.
 

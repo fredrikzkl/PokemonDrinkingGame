@@ -12,7 +12,7 @@ dist/
 *.egg-info/
 
 # Output files
-output/
+# output/
 tiles/output/
 *.pdf
 *.png
