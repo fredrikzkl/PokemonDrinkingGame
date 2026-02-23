@@ -43,9 +43,11 @@ tiles:
   - name: Pikachu
     text: |
       Pikachu uses Thunder... smash!
-      All players in the forest cheers and drink 1.
+      You, and all players in the forest, cheers and drink 1. 
+      Drinking alone? Paralyzed! Drink 2 and skip your next turn.
     poke_api_image: "pokemon/pikachu"
     background_color: "viridian_forest"
+    image_margin_top: -50
 
   # - name: Weedle
   #   text: |
@@ -215,6 +217,8 @@ tiles:
     header: "Rock Tunnel"
     text: "Dangerous to continue without supplies! If you finish your drink, at any point, while you are in the cave, fill it up and return here."
     background_color: "rock_tunnel"
+    local_background_image: rock-tunnel.png
+    text_margin_top: -70
 
   - name: Zubat
     text: |
@@ -270,6 +274,8 @@ tiles:
     header: Pokemon Tower
     text: "While in the Pokemon Tower, out of respect for the dead, you should not speak. Doing so results in 2 drinks."
     background_color: "pokemon_tower"
+    local_background_image: pokemon-tower.png
+    text_margin_top: -80
 
   - name: channeler
     text: |
@@ -341,9 +347,11 @@ tiles:
 
   - name: saffron_city_mall
     header: "Saffron City Mall"
+    text_margin_top: -60
     text: |
       This mall has both a PokeMart and a PokeCenter! 
       You may visit both.
+    local_background_image: saffron-city.png
 
   - name: Gary
     header: Gary
@@ -492,6 +500,7 @@ tiles:
   - name: seafoam_islands
     header: Seafoam Islands
     background_color: seafoam_islands
+    local_background_image: seafoam-islands.png
     text: |
       To reach the islands safely, you'll have to surf across. 
       While surfing, you may not, for any reason, touch the floor. If you do so, return back here and drink 2.

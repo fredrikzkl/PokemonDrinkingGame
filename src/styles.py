@@ -9,7 +9,7 @@ COLORS = {
     "pokemon_tower": (216, 160, 208),
     "silph_co": (144, 176, 224),
     "safari_zone": (184, 192, 88),
-    "seafoam_islands": (0, 160, 232),
+    "seafoam_islands": (216, 232, 248),
     "optional_stop": (200, 200, 200),
 }
 
