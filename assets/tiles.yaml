@@ -27,27 +27,35 @@ tiles:
   - name: Viridian Forest
     header: "Viridian Forest"
     text: "Try not to get lost! When you roll to move, if you roll 5 or 6, drink 1 and return here"
+    local_background_image: "viridian-forest.png"
     background_color: "viridian_forest"
+    text_margin_top: -35
 
   - name: Caterpie
-    text: "Caterpie used String Shot! All players may only move half of what they roll on their next turn (round up)"
+    text: |
+      Caterpie used String Shot! 
+       It's super effective!
+      All players may only move half of what they roll on their next turn (round up)
     poke_api_image: "pokemon/caterpie"
     background_color: "viridian_forest"
+    image_margin_top: -60
 
-  # - name: Pikachu
-  #   text: "-- TODO -- "
-  #   poke_api_image: "pokemon/pikachu"
-  #   background_color: "viridian_forest"
-
-  - name: Weedle
+  - name: Pikachu
     text: |
-      Weedle used Poison Sting!
-      Drink 2. Next time someone passes you, they must stop at whatever square you're on
-    poke_api_image: "pokemon/weedle"
+      Pikachu uses Thunder... smash!
+      All players in the forest cheers and drink 1.
+    poke_api_image: "pokemon/pikachu"
     background_color: "viridian_forest"
 
+  # - name: Weedle
+  #   text: |
+  #     Weedle used Poison Sting!
+  #     Drink 2. Next time someone passes you, they must stop at whatever square you're on
+  #   poke_api_image: "pokemon/weedle"
+  #   background_color: "viridian_forest"
+
   - name: Metapod
-    text: "A hard bro appeared! Drink 2, and reduce the amount you drink by half (round up) until your next turn"
+    text: "A hard bro appeared! Drink 1, and reduce the amount you drink by half (round up) until your next turn"
     poke_api_image: "pokemon/metapod"
     background_color: "viridian_forest"
 
@@ -57,6 +65,7 @@ tiles:
       Pick two players to drink 2
     poke_api_image: "pokemon/beedrill"
     background_color: "viridian_forest"
+    text_margin_top: 40
 
   # Brock - Onix (Rock Type)
   # Advantage: Squrtle, Bulbasaur
@@ -210,10 +219,10 @@ tiles:
   - name: Zubat
     text: |
       Zubats... they're... they're everywhere! Take a drink. 
-      **Start of turn:** If you roll 1 or 2, stay here and take a drink!
-    poke_api_image: "pokemon/zubat"
+      **Start of turn:** If you roll 5 or 6, stay here and take a drink!
+    local_image: zubat.png
     background_color: "rock_tunnel"
-    image_margin_top: -10
+    image_margin_top: 60
 
   - name: cubone
     text: |
@@ -557,7 +566,7 @@ tiles:
   - name: zapdos
     text: |
       Zapdos used Thunder! All players not inside (Rock Tunnel, Gym, etc) choose:
-      1. Lose next turn and drink 3
+      1. Lose next turn and drink 4 
       2: Dodge, move 3 squares back
     poke_api_image: pokemon/zapdos
     image_margin_top: -75

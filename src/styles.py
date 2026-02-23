@@ -4,7 +4,7 @@ Color Pallett: https://bulbapedia.bulbagarden.net/wiki/Color_palette_(Generation
 
 COLORS = {
     "gym": (255, 201, 16),
-    "viridian_forest": (120, 192, 120),
+    "viridian_forest": (116, 205, 165),
     "rock_tunnel": (200, 176, 112),
     "pokemon_tower": (216, 160, 208),
     "silph_co": (144, 176, 224),
