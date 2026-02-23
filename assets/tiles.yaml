@@ -34,7 +34,7 @@ tiles:
   - name: Caterpie
     text: |
       Caterpie used String Shot! 
-       It's super effective!
+      It's super effective!
       All players may only move half of what they roll on their next turn (round up)
     poke_api_image: "pokemon/caterpie"
     background_color: "viridian_forest"
@@ -268,7 +268,7 @@ tiles:
     text: |
       Spooky soundtrack. While on this square, any drink given to you is also taken by the giver.
 
-      There is a PokeCenter and a PokeMart in this town. You may visit one of them.
+      There is a Poke Center and a Poke Mart in this town. You may visit one of them.
 
   - name: pokemon_tower
     header: Pokemon Tower
@@ -279,7 +279,7 @@ tiles:
 
   - name: channeler
     text: |
-      A possessed Channeler. Now you're possessed too! While you are in this square, anyone may make you get them a drink
+      A possessed Channeler. Now you're possessed too! While you are on this square, anyone may make you get them a drink
     local_image: channeler.png
     image_scale: 0.55
     image_margin_top: 10
@@ -359,11 +359,11 @@ tiles:
     image_margin_top: 100
     local_image: "gary-3.png"
     text_margin_top: 25
-    text: "Dude, this fucking guy again? Roll a die, and take that many drinks. The next time this punk hassles you, will be the last!"
+    text: "Dude, this fucking guy again? Roll a die, and take that many drinks. The next time this punk hassles you will be the last!"
 
   - name: silph_co
     header: "Silph Co."
-    text: "You've infiltrated the headquarters of the infamous Team Rocket! if you receive drinks from other players while in this building, you get spotted, and have to return here"
+    text: "You've infiltrated the headquarters of the infamous Team Rocket! If you receive drinks from other players while in this building, you get spotted, and have to return here"
     background_color: "silph_co"
 
   - name: magneton
@@ -441,7 +441,7 @@ tiles:
   - name: chansey
     text: |
       Chansey used Heal Bell!
-      Replace your current drink with non-alcoholic
+      Replace your current drink with something non-alcoholic
       **Enraged**: Flees, drink 2 (dick)
     background_color: safari_zone
     poke_api_image: pokemon/chansey
@@ -616,7 +616,7 @@ tiles:
     image_margin_top: 120
     text_margin_top: 20
     text: |
-      Elite four: 4/10
+      Elite Four: 4/10
       **Special:** You fight with 4 dice
       **Faint:** Drink 4
       **Flash:** Advance to Champion!

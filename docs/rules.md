@@ -24,9 +24,9 @@ Your starter determines type advantage in Trainer Battles (roll 2 dice, take the
 
 ## Drinking
 
-The standard drink is a 0.33 beer, with 4.5% abv. One "drink", consists of 10 sips.
+The standard drink is a 0.33 beer, with 4.5% abv. One "drink" consists of 10 sips.
 
-*Important*: It's only allowed to fill up your cup (drink), when it's empty. A lot of mechanics in the game rely on the progress of your drink.
+*Important*: It's only allowed to fill up your cup (drink) when it's empty. A lot of mechanics in the game rely on the progress of your drink.
 
 ## Trainer Battle
 
@@ -50,7 +50,7 @@ If you land on the same square as another player, you must battle!
 ## Gym Mechanics
 
 Grab 3 dice. Split them however you like between Attack and Defence.
-Gym stats are shown as **ATK/HP**
+Gym stats are shown as **ATK/HP**.
 (e.g. 3/4 = 3 Attack, 4 Health).
 
 Each round has two phases:
