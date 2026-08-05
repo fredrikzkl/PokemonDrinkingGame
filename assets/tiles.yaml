@@ -14,7 +14,7 @@ tiles:
     poke_api_image: "pokemon/pidgey"
 
   - name: pokeball
-    text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use its move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
+    text: "You found a Pokeball! When you meet a Pokemon, roll 4-6 to catch it: skip its effect, and use its move on any player later. Roll 1-3, ball is lost, and resolve the encounter normally."
     poke_api_image: "item/poke-ball"
     image_scale: 0.4
     image_margin_top: 30

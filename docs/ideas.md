@@ -64,6 +64,18 @@ e.g. a 5 sends you 5 squares backwards.
   poke_api_image: "pokemon/koffing"
 ```
 
+### Hitmonlee
+
+A physical challenge — the board only has Tentacool and Lickitung in this vein,
+and this one gets funnier the longer the game runs. Hitmonlee lives in the
+Fighting Dojo in Saffron City, if placement should follow the games.
+
+```yaml
+- name: hitmonlee
+  text: "Hitmonlee used High Jump Kick!\nStand on one leg until your next turn. Put your foot down, drink 3"
+  poke_api_image: "pokemon/hitmonlee"
+```
+
 ### Alakazam — used, kept for reference
 
 The guess-the-die mechanic below now lives on the **Hypno** tile as Hypnosis, and
