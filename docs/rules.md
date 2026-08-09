@@ -41,11 +41,19 @@ If you land on the same square as another player, you must battle!
 
 **Pokeball / Safari Ball:** When landing on a Pokemon square, you may throw your ball *before* the effect occurs. Roll 4-6 to catch (Safari Ball: see Safari Zone rules). If caught, the square's effect is skipped and you keep the Pokemon for later use. **Master Ball** has a 100% catch rate.
 
-**Using a caught Pokemon:** On your turn, before your movement roll, you may use a caught Pokemon's move on any player of your choice. The effect resolves immediately. Each caught Pokemon can only be used once.
-
 **Repel:** Declare *before* the effect occurs. Skip the Pokemon encounter entirely.
 
-**Potion:** Can be used at any time when you are about to drink. Negates 1 drinking effect from any source.
+**Potion:** Can be used at any time when you are about to drink. Negates a drinking effect from any source. For example, another player picks you to drink 2. If you decide to use potion, you skip those drinks, and the Potion is spent.
+
+## Using caught Pokemon
+
+On your turn, you may use a caught Pokemon's move on any player of your choice. You can use it before or after your roll.
+The effect resolves immediately. Each caught Pokemon can only be used once.
+
+Examples:
+
+1. You have caught **Tauros**. You roll 5, and would land on Articuno. However, you have the fossil, and decide to use Tauros Horn Attack. You drink 1 and move to Cinnabar Lab instead.
+2. You have caught **Tentacool**. A player is currently infiltrating Silph Co. You decide to use Constrict on that player at the start of your turn. Targeted player must drink 3 and hold their drink until it's finished, and is caught by the zone effect, and must start at the beginning of Silph Co.
 
 ## Gym Mechanics
 
@@ -73,12 +81,16 @@ Each gym has:
 
 You split your 3 dice: 2 for Attack, 1 for Defence.
 
-**Round 1:** You roll ATK: 4, 3. Highest = 4. Onix HP is 4. 4 >= 4: Onix is defeated! Flash: You get a Pokeball!
+**Round 1:** You roll to attack: 4 and 3.
+Highest die was 4. Onix HP is 4. 4 >= 4: Onix is defeated! Flash: You get a Pokeball!
 
-Now imagine your ATK was lower:
+Now imagine your attack was lower:
 
-**Round 1:** You roll ATK: 3, 2. Highest = 3. Onix has 4 HP. 3 < 4, Onix survives at 1 HP. Onix attacks: its ATK (3) vs your DEF die (5). 3 < 5: you defend!
+**Round 1:** You roll to attack: 3 and 2.
+Highest is 3. Onix has 4 HP. 4 minus 3, Onix survives at 1 HP.
+Onix attacks: its attack is 3.
+You roll your defence die: 5. 3 < 5: you defend!
 
-**Round 2:** You roll ATK: 2, 1. Highest = 2. Onix has 1 HP. 2 >= 1: Onix is down! Flash: Pokeball!
+**Round 2:** You roll attack: 2, 1. Highest = 2. Onix has 1 HP. 2 >= 1: Onix is down! Flash: Pokeball!
 
-**Faint scenario:** Onix ATK (3) vs your DEF die (2). 3 > 2: you faint! Drink 2, restart the fight (Onix back to full HP).
+**Faint scenario:** Onix attack (3) vs your defence die (2). 3 > 2: you faint! Drink 2, restart the fight (Onix back to full HP).
