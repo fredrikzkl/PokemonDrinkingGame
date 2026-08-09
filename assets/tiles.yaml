@@ -1,5 +1,7 @@
-# Statuses:
-# Confusion: If you roll 4,5 or 6, you drink 2 and lose your turn
+# Polygon: Er for mange gyms så blir mye rare greier
+# Forest: Trenger kanskje å gjøre lettere å komme igjennom?
+# Alakazam gym: må ha en annen flash
+# Må gjøre no med pacing - på slutten er det bare masse gyms, som ikke er drikke
 
 tiles:
   - name: Pallet Town
@@ -26,8 +28,11 @@ tiles:
   # Viridian Forest
   - name: Viridian Forest
     header: "Viridian Forest"
-    text: "Try not to get lost! When you roll to move, if you roll 5 or 6, drink 1 and return here"
-    local_background_image: "viridian-forest.png"
+    text: |
+      Try not to get lost! 
+      When you roll to move, if you roll 6, drink 1 and return here.
+      If you roll a 5, roll again.
+    local_background_image: "viridian-forest-transparent.png"
     background_color: "viridian_forest"
     text_margin_top: -35
 
@@ -42,7 +47,7 @@ tiles:
 
   - name: Pikachu
     text: |
-      Pikachu uses Thunder... smash!
+      Pikachu uses Thunder... Smash!
       You, and all players in the forest, cheers and drink 1. 
       Drinking alone? Paralyzed! Drink 2 and skip your next turn.
     poke_api_image: "pokemon/pikachu"
@@ -57,7 +62,9 @@ tiles:
   #   background_color: "viridian_forest"
 
   - name: Metapod
-    text: "A hard bro appeared! Drink 1, and reduce the amount you drink by half (round up) until your next turn"
+    text: |
+      A hard bro appeared! 
+      Reduce the amount you drink by half (round up) until your next turn
     poke_api_image: "pokemon/metapod"
     background_color: "viridian_forest"
 
@@ -114,7 +121,7 @@ tiles:
     text_align: left
     text: |
       Optional: Buy one item
-      **Potion** (1 drink): Negate 1 drinking effect from any source
+      **Potion** (1 drink): Skip one drinking request entirely
       **Repel** (2 drinks): Skip a pokemon encounter
       **Pokeball** (3 drinks)
 
@@ -133,7 +140,7 @@ tiles:
     image_margin_top: 120
     text_margin_top: 20
     text: |
-      Your Pokemon are fully restored! You, however, look terrible. 
+      Your Pokemon are fully restored! You, however, look like a piece of garbage. 
       Optional: Replace your drink with water. Drink 4.
 
   # Misty - Starmie, type water
@@ -143,12 +150,12 @@ tiles:
     text: |
       Starmie: 3/5
       **Special:** +1 ATK if damaged
-      **Faint:** Drink 2
-      **Flash:** Everyone else drinks 1
+      **Faint:** Drink 3
+      **Flash:** Splash! Everyone else drinks 1
     local_image: gym-cerulean.png
     image_scale: 0.45
     image_margin_top: 70
-    text_margin_top: 40
+    text_margin_top: 60
     background_color: "gym"
 
   - name: Slowpoke
@@ -170,16 +177,6 @@ tiles:
     poke_api_image: "pokemon/magikarp"
     image_scale: 0.8
 
-  - name: Pokemon Stadium
-    header: "Stadium"
-    local_image: "stadium.png"
-    image_anchor_bottom: true
-    text_margin_top: 40
-    text: |
-      Challenge a player to a trainer battle. If you win, swap places. 
-      Lost? Drink 4. 
-      Play until a winner is crowned.
-
   - name: Tentacool
     text: |
       Tentacool used Constrict!
@@ -188,6 +185,16 @@ tiles:
     image_scale: 0.8
     image_margin_top: -20
     text_margin_top: 10
+
+  - name: Pokemon Stadium
+    header: "Stadium"
+    local_image: "stadium.png"
+    image_anchor_bottom: true
+    text_margin_top: 40
+    text: |
+      Challenge a player to a trainer battle. 
+      If you win, swap places. 
+      Lost? Drink 4. Ties reroll.
 
   - name: Spearow
     text: |
@@ -202,14 +209,14 @@ tiles:
   - name: Vermilion Gym
     header: Vermilion Gym
     text: |
-      Raichu: 4/4
+      Raichu: 3/4
       **Special:** Raichu Starts
-      **Faint:** Drink 2
-      **Flash:** You get a Repel
+      **Faint:** Drink the number of players behind you (minimum 1) 
+      **Flash:** Zap! Extra turn!
     local_image: gym-vermilion.png
-    image_scale: 0.7
+    image_scale: 0.55
     image_margin_top: 90
-    text_margin_top: 40
+    text_margin_top: 20
     background_color: "gym"
 
   # Rock Tunnel
@@ -266,7 +273,7 @@ tiles:
     local_background_image: "lavender-town.png"
     text_margin_top: 80
     text: |
-      Spooky soundtrack. While on this square, any drink given to you is also taken by the giver.
+      Spooky place. While on this square, any drink given to you is also taken by the giver.
 
       There is a Poke Center and a Poke Mart in this town. You may visit one of them.
 
@@ -310,17 +317,8 @@ tiles:
     poke_api_image: "pokemon/hypno"
     text_margin_top: 30
 
-  - name: Gary
-    header: Gary
-    local_image: "gary-2.png"
-    image_scale: 0.3
-    image_margin_top: 85
-    text_margin_top: 40
-    text: |
-      Roll a die. Drink that number. Seriously though, is this dude following you or something?
-
   - name: snorlax
-    text: "A sleeping snorlax!\nStart singing a song! Anyone joining, avoids drinking 4. If no one joins, you solely drink 4."
+    text: "A sleeping snorlax!\nStart singing a song! Anyone joining, avoids drinking 3. If no one joins, you solely drink 4."
     poke_api_image: "pokemon/snorlax"
     image_scale: 0.8
     image_margin_top: -50
@@ -336,45 +334,51 @@ tiles:
       Vileplume: 3/7
       **Special:** Toxic, start round by drinking 1, add +1 every round.
       **Faint:** Drink current toxicity. Reset toxicity
-      **Flash:** Extra turn
+      **Flash:** Give 3 drinks
     image_scale: 0.4
     background_color: "gym"
 
-  - name: mr_mime
-    text: "Mr. Mime mini game! Mime anything. Guessed? You + guesser may move 1, or add 1 to your roll next turn. No guess? Drink 5."
-    poke_api_image: pokemon/mr-mime
-    image_margin_top: -30
-
-  - name: saffron_city_mall
-    header: "Saffron City Mall"
+  - name: saffron_city
+    header: "Saffron City"
     text_margin_top: -60
     text: |
-      This mall has both a PokeMart and a PokeCenter! 
+      This city has both a Poke Mart and a Poke Center! 
       You may visit both.
     local_background_image: saffron-city.png
 
   - name: Gary
     header: Gary
-    image_scale: 0.275
-    image_margin_top: 100
-    local_image: "gary-3.png"
-    text_margin_top: 25
-    text: "Dude, this fucking guy again? Roll a die, and take that many drinks. The next time this punk hassles you will be the last!"
+    local_image: "gary-2.png"
+    image_scale: 0.3
+    image_margin_top: 85
+    text_margin_top: 40
+    text: |
+      Roll a die. Drink that number. Seriously though, is this dude following you or something?
 
   - name: silph_co
     header: "Silph Co."
-    text: "You've infiltrated the headquarters of the infamous Team Rocket! If you receive drinks from other players while in this building, you get spotted, and have to return here"
+    text: |
+      You've infiltrated the headquarters of the infamous Team Rocket! Lay low! If you drink while it's not your turn, you've been spotted. Return here and drink 1.
     background_color: "silph_co"
+    text_margin_top: -20
+    local_background_image: silph-co.png
 
   - name: magneton
-    text: "Magneton used Magnet Rise!\nPull the two closest players 1 square towards you. Drink 2"
+    text: |
+      Magneton used Magnet Rise!
+      Pull the two closest players 1 square towards you.
+      They drink 2.
+    image_margin_top: -40
     poke_api_image: pokemon/magneton
     background_color: "silph_co"
 
   - name: porygon
-    text: "Porygon used Conversion!\nCopy the effect of the last square any player landed on."
+    text: |
+      Porygon used Conversion!
+      Copy the effect of the last square the previous player landed on. If it's a gym, you copy the **Faint** effect.
     poke_api_image: pokemon/porygon
     background_color: "silph_co"
+    image_margin_top: -40
 
     # Charmander-starters må drikke 6?
   - name: lapras
@@ -410,11 +414,11 @@ tiles:
       Alakazam: ?/?
       **Special:** Roll 1 die for ATK, 1 for HP to set Alakazam's stats
       **Faint:** Drink a die roll. Reroll Alakazam's stats
-      **Flash:** Select your next move roll
+      **Flash:** Kinesis! Move any player 2 squares back
     local_image: gym-saffron.png
-    image_scale: 0.5
-    text_margin_top: 20
-    image_margin_top: 90
+    image_scale: 0.45
+    text_margin_top: 10
+    image_margin_top: 100
     background_color: gym
 
   - name: safari_zone
@@ -441,12 +445,12 @@ tiles:
   - name: chansey
     text: |
       Chansey used Heal Bell!
-      Replace your current drink with something non-alcoholic
+      Replace your current drink with something non-alcoholic. Thank Chansey for being a bro.
       **Enraged**: Flees, drink 2 (dick)
     background_color: safari_zone
     poke_api_image: pokemon/chansey
-    image_margin_top: -20
-    text_margin_top: 25
+    image_margin_top: -50
+    text_margin_top: 5
 
   - name: scyther
     text: |
@@ -467,9 +471,9 @@ tiles:
       Roll 5-6: Hit! Drink the pass count, take next turn
       Full circle back to you? You're hit!
       **Enraged**: Drink double!
-    image_scale: 0.6
+    image_scale: 0.5
     image_margin_top: -45
-    text_margin_top: -25
+    text_margin_top: -40
     background_color: safari_zone
     poke_api_image: pokemon/kangaskhan
 
@@ -501,9 +505,10 @@ tiles:
     header: Seafoam Islands
     background_color: seafoam_islands
     local_background_image: seafoam-islands.png
+    text_margin_top: -20
     text: |
       To reach the islands safely, you'll have to surf across. 
-      While surfing, you may not, for any reason, touch the floor. If you do so, return back here and drink 2.
+      While surfing, you may not, for any reason, touch the floor. If you do so, return back here and drink 3.
 
   - name: dewgong
     text: "Dewgong used Whirlpool!\nEveryone takes a drink, and reverse the turn order!"
@@ -512,17 +517,25 @@ tiles:
     image_margin_top: -50
 
   - name: golduck
-    text: "Golduck used Fury Swipes! Roll a die.\nEven: Roll again\nOdd: Drink the number of times you rolled"
+    text: |
+      Golduck used Fury Swipes! 
+      Roll a die.
+      Even: Roll again
+      Odd: Drink the number of times you rolled
     poke_api_image: pokemon/golduck
     background_color: seafoam_islands
     image_margin_top: -70
 
   - name: articuno
-    text: "Articuno used Blizzard!\nYou are frozen in place! You may roll odd to break free, even results in 2 missed turns. Or do nothing, miss 1 turn"
+    text: |
+      Articuno used Blizzard!
+      You are frozen in place! **Optional:** Roll odd to break free. Even: 2 missed turns. 
+      Do nothing: Miss next turn. 
+      Drink 3 on every missed turn.
     poke_api_image: pokemon/articuno
     background_color: seafoam_islands
     image_margin_top: -10
-    image_scale: 0.6
+    image_scale: 0.55
 
   - name: pokemon_lab
     header: Cinnabar Lab
@@ -534,7 +547,7 @@ tiles:
     text: |
       Trade a fossil for an upgrade:
       **Aerodactyl**: You may add +1 to any movement roll
-      **Kabuto**: Pokeballs now catch on 2-6 rolls (instead of 4-6)
+      **Kabuto**: +1 extra die at gyms
       **Omanyte**: Drinks from other players are halved (round down)
 
   - name: cinnabar_gym
@@ -550,6 +563,20 @@ tiles:
       **Faint:** Burned! Drink 4
       **Flash:** You get a Potion
     background_color: gym
+
+  - name: mr_mime
+    text: |
+      Mr. Mime mini game! Mime anything. Guessed? You + guesser earns a Pokeball! No guess? Drink 5.
+    poke_api_image: pokemon/mr-mime
+    image_margin_top: -30
+
+  - name: Gary
+    header: Gary
+    image_scale: 0.275
+    image_margin_top: 100
+    local_image: "gary-3.png"
+    text_margin_top: 25
+    text: "Dude, this fucking guy again? Roll a die, and take that many drinks. The next time this punk hassles you will be the last!"
 
   # Both Golem and Zapdos sends the player back here. Should be a "At start of turn" effect
   - name: electrode
@@ -574,7 +601,8 @@ tiles:
   # Power Plant
   - name: zapdos
     text: |
-      Zapdos used Thunder! All players not inside (Rock Tunnel, Gym, etc) choose:
+      Zapdos used Thunder! 
+      All players not inside (Rock Tunnel, Gym, etc) choose:
       1. Lose next turn and drink 4 
       2: Dodge, move 3 squares back
     poke_api_image: pokemon/zapdos
@@ -617,7 +645,7 @@ tiles:
     text_margin_top: 20
     text: |
       Elite Four: 4/10
-      **Special:** You fight with 4 dice
+      **Special:** You fight with one extra die
       **Faint:** Drink 4
       **Flash:** Advance to Champion!
     background_color: gym
