@@ -100,6 +100,15 @@ rediscovered as new.
   image_scale: 0.85
 ```
 
+## Open design questions
+
+Carried over from the top of `assets/tiles.yaml` during the V2 merge.
+
+- **Porygon:** Er for mange gyms så blir mye rare greier
+- **Forest:** Trenger kanskje å gjøre lettere å komme igjennom?
+- **Alakazam gym:** må ha en annen flash
+- **Pacing:** Må gjøre no med pacing — på slutten er det bare masse gyms, som ikke er drikke
+
 ## Mechanic ideas
 
 ### Stomp
