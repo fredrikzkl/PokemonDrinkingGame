@@ -76,6 +76,17 @@ Fighting Dojo in Saffron City, if placement should follow the games.
   poke_api_image: "pokemon/hitmonlee"
 ```
 
+### Charizard
+
+```yaml
+- name: charizard
+  text: |
+    Charziard used Fly!
+    Move 8 squares ahead. Every player you passed gets scorched, and must drink 6
+
+  poke_api_image: "pokemon/charizard"
+```
+
 ### Alakazam — used, kept for reference
 
 The guess-the-die mechanic below now lives on the **Hypno** tile as Hypnosis, and
