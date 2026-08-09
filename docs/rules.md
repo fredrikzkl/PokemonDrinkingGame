@@ -88,7 +88,7 @@ Now imagine your attack was lower:
 
 **Round 1:** You roll to attack: 3 and 2.
 Highest is 3. Onix has 4 HP. 4 minus 3, Onix survives at 1 HP.
-Onix attacks: Its attack is 3
+Onix attacks: its attack is 3.
 You roll your defence die: 5. 3 < 5: you defend!
 
 **Round 2:** You roll attack: 2, 1. Highest = 2. Onix has 1 HP. 2 >= 1: Onix is down! Flash: Pokeball!

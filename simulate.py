@@ -1,4 +1,5 @@
 """
+NOTE the board has to be re-analyzed - some have been changed since the last simulation.
 Monte Carlo simulation of the Poke Drinking Game board.
 Pre-computes gym battle distributions, then simulates games.
 """
@@ -26,7 +27,14 @@ for i, t in enumerate(tile_defs):
     bg = t.get("background_color", "")
     if bg == "gym":
         GYMS.add(i)
-    if bg in ("viridian_forest", "rock_tunnel", "pokemon_tower", "silph_co", "safari_zone", "seafoam_islands"):
+    if bg in (
+        "viridian_forest",
+        "rock_tunnel",
+        "pokemon_tower",
+        "silph_co",
+        "safari_zone",
+        "seafoam_islands",
+    ):
         ZONES[i] = bg
 
 
@@ -342,9 +350,18 @@ def forest_roll():
 
 
 def simulate_game():
-    players = [{"pos": 0, "drinks": 0, "turns": 0, "tiles_landed": 0,
-                "lost_turns": 0, "state": {}, "finished": False}
-               for _ in range(NUM_PLAYERS)]
+    players = [
+        {
+            "pos": 0,
+            "drinks": 0,
+            "turns": 0,
+            "tiles_landed": 0,
+            "lost_turns": 0,
+            "state": {},
+            "finished": False,
+        }
+        for _ in range(NUM_PLAYERS)
+    ]
 
     total_rounds = 0
     while total_rounds < 200:
@@ -368,8 +385,11 @@ def simulate_game():
 
             p["turns"] += 1
 
-            in_forest = (FOREST_START is not None and FOREST_END is not None and
-                         FOREST_START <= p["pos"] <= FOREST_END)
+            in_forest = (
+                FOREST_START is not None
+                and FOREST_END is not None
+                and FOREST_START <= p["pos"] <= FOREST_END
+            )
 
             if in_forest:
                 move, got_lost = forest_roll()
@@ -488,7 +508,9 @@ for i in range(NUM_TILES):
         d_sum += d
     avg = d_sum / n
     if avg >= 2:
-        heavy_tiles.append((tile_defs[i].get("name", ""), tile_defs[i].get("header", ""), i + 1, avg))
+        heavy_tiles.append(
+            (tile_defs[i].get("name", ""), tile_defs[i].get("header", ""), i + 1, avg)
+        )
 heavy_tiles.sort(key=lambda x: -x[3])
 
 # Section breakdown
@@ -507,28 +529,44 @@ sections = [
 with open("docs/simulation.md", "w") as f:
     f.write("# Game Simulation Results (Final Version)\n\n")
     f.write(f"Simulated **{NUM_GAMES:,} games** with **{NUM_PLAYERS} players**. ")
-    f.write("Social/physical mechanics (Haunter's no-laughing, Seafoam's no-floor-touching) are estimated conservatively.\n\n")
+    f.write(
+        "Social/physical mechanics (Haunter's no-laughing, Seafoam's no-floor-touching) are estimated conservatively.\n\n"
+    )
 
     f.write("## Key Numbers\n\n")
     f.write("| Metric | Value |\n")
     f.write("|--------|-------|\n")
-    f.write(f"| Average rounds to finish | **~{avg_rounds:.0f}** (10th-90th: {p10_r}-{p90_r}) |\n")
+    f.write(
+        f"| Average rounds to finish | **~{avg_rounds:.0f}** (10th-90th: {p10_r}-{p90_r}) |\n"
+    )
     f.write(f"| Turns per player | **~{avg_turns:.0f}** |\n")
     f.write(f"| Tiles landed on per player | **~{avg_tiles:.0f}** |\n")
-    f.write(f"| Drinks per player (direct) | **~{avg_drinks:.0f} sips (~{avg_drinks/10:.1f} beers)** |\n")
-    f.write(f"| Drinks per player (with collateral) | **~{collateral:.0f} sips (~{collateral/10:.1f} beers)** |\n")
-    f.write(f"| Estimated game time | **{est_min/60:.1f}-{est_max/60:.1f} hours** |\n")
-    f.write(f"| Drink variance | 10th: {p10_d} sips, median: {p50_d}, 90th: {p90_d} sips |\n")
+    f.write(
+        f"| Drinks per player (direct) | **~{avg_drinks:.0f} sips (~{avg_drinks / 10:.1f} beers)** |\n"
+    )
+    f.write(
+        f"| Drinks per player (with collateral) | **~{collateral:.0f} sips (~{collateral / 10:.1f} beers)** |\n"
+    )
+    f.write(
+        f"| Estimated game time | **{est_min / 60:.1f}-{est_max / 60:.1f} hours** |\n"
+    )
+    f.write(
+        f"| Drink variance | 10th: {p10_d} sips, median: {p50_d}, 90th: {p90_d} sips |\n"
+    )
     f.write("\n")
 
     f.write("## Drink Breakdown by Section\n\n")
     f.write("| Section | Tiles | Heaviest Tiles |\n")
     f.write("|---------|-------|---------------|\n")
     for sec_name, start, end in sections:
-        sec_heavy = [(n or h, d) for n, h, pos, d in heavy_tiles if start < pos <= end + 1]
+        sec_heavy = [
+            (n or h, d) for n, h, pos, d in heavy_tiles if start < pos <= end + 1
+        ]
         sec_heavy.sort(key=lambda x: -x[1])
-        heavy_str = ", ".join(f"{n} ({d:.0f})" for n, d in sec_heavy[:4]) if sec_heavy else "-"
-        f.write(f"| {sec_name} | {start+1}-{end+1} | {heavy_str} |\n")
+        heavy_str = (
+            ", ".join(f"{n} ({d:.0f})" for n, d in sec_heavy[:4]) if sec_heavy else "-"
+        )
+        f.write(f"| {sec_name} | {start + 1}-{end + 1} | {heavy_str} |\n")
     f.write("\n")
 
     f.write("## Heaviest Tiles (3+ avg drinks)\n\n")
@@ -544,7 +582,7 @@ with open("docs/simulation.md", "w") as f:
         res = gym_results[gi]
         ad = sum(d for d, _ in res) / len(res)
         ar = sum(r for _, r in res) / len(res)
-        gname = tile_defs[gi].get('header', '')
+        gname = tile_defs[gi].get("header", "")
         if gname and gname != "Pokemon Master":
             f.write(f"| {gname} | {ad:.1f} | {ar:.1f} |\n")
     f.write("\n")
@@ -553,8 +591,12 @@ with open("docs/simulation.md", "w") as f:
     f.write("| Step | Probability |\n")
     f.write("|------|------------|\n")
     f.write(f"| Player gets a Fossil (stops at Super Nerd) | **{fossil_pct:.1f}%** |\n")
-    f.write(f"| Player gets upgrade (Fossil + Cinnabar Lab) | **{upgrade_pct:.1f}%** |\n")
-    f.write(f"| At least 1 of {NUM_PLAYERS} players gets upgrade | **{game_upgrade_pct:.1f}%** |\n")
+    f.write(
+        f"| Player gets upgrade (Fossil + Cinnabar Lab) | **{upgrade_pct:.1f}%** |\n"
+    )
+    f.write(
+        f"| At least 1 of {NUM_PLAYERS} players gets upgrade | **{game_upgrade_pct:.1f}%** |\n"
+    )
     f.write("\n")
 
     f.write("## Board Summary\n\n")
@@ -563,12 +605,16 @@ with open("docs/simulation.md", "w") as f:
     zone_counts = defaultdict(int)
     for z in ZONES.values():
         zone_counts[z] += 1
-    f.write(f"- **Zones:** {', '.join(f'{z} ({c})' for z, c in sorted(zone_counts.items(), key=lambda x: -x[1]))}\n")
+    f.write(
+        f"- **Zones:** {', '.join(f'{z} ({c})' for z, c in sorted(zone_counts.items(), key=lambda x: -x[1]))}\n"
+    )
     f.write(f"- **Avg game length:** ~{avg_rounds:.0f} rounds\n")
     f.write(f"- **Drink range:** {p10_d}-{p90_d} sips per player (80% of games)\n")
 
 print(f"\nDone! Results written to docs/simulation.md")
 print(f"  Rounds: {avg_rounds:.1f} avg ({p10_r}-{p90_r})")
-print(f"  Drinks/player: {avg_drinks:.1f} sips ({avg_drinks/10:.1f} beers)")
+print(f"  Drinks/player: {avg_drinks:.1f} sips ({avg_drinks / 10:.1f} beers)")
 print(f"  Turns/player: {avg_turns:.1f}")
-print(f"  Fossil: {fossil_pct:.1f}%, Upgrade: {upgrade_pct:.1f}%, Game w/ upgrade: {game_upgrade_pct:.1f}%")
+print(
+    f"  Fossil: {fossil_pct:.1f}%, Upgrade: {upgrade_pct:.1f}%, Game w/ upgrade: {game_upgrade_pct:.1f}%"
+)
