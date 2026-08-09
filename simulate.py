@@ -16,35 +16,31 @@ GYM_PRECOMPUTE = 10_000
 with open("assets/tiles.yaml") as f:
     data = yaml.safe_load(f)
 
-tile_defs = data["tiles"]
+tile_defs = [t for t in data["tiles"] if not isinstance(t, str)]
 NUM_TILES = len(tile_defs)
 
 GYMS = set()
-OPTIONAL_STOPS = set()
 ZONES = {}
 
 for i, t in enumerate(tile_defs):
     bg = t.get("background_color", "")
     if bg == "gym":
         GYMS.add(i)
-    if bg == "optional_stop":
-        OPTIONAL_STOPS.add(i)
     if bg in ("viridian_forest", "rock_tunnel", "pokemon_tower", "silph_co", "safari_zone", "seafoam_islands"):
         ZONES[i] = bg
 
 
-def gym_battle_once(atk, hp):
-    """Single gym attempt. Returns (rounds, flashed)."""
+def gym_battle_once(atk, hp, num_dice=3):
     current_hp = hp
     rounds = 0
     while True:
         rounds += 1
-        dice = sorted([random.randint(1, 6) for _ in range(3)], reverse=True)
+        dice = sorted([random.randint(1, 6) for _ in range(num_dice)], reverse=True)
         best_patk, best_pdef = 0, 0
         best_score = -1
-        for a in range(4):
+        for a in range(num_dice + 1):
             patk = max(dice[:a]) if a > 0 else 0
-            pdef = max(dice[a:]) if (3 - a) > 0 else 0
+            pdef = max(dice[a:]) if (num_dice - a) > 0 else 0
             if patk >= current_hp:
                 score = 1000 + pdef
             else:
@@ -62,7 +58,6 @@ def gym_battle_once(atk, hp):
 
 
 def precompute_gym(name):
-    """Pre-compute gym outcomes. Returns list of (drinks, rounds)."""
     results = []
     for _ in range(GYM_PRECOMPUTE):
         drinks = 0
@@ -83,29 +78,29 @@ def precompute_gym(name):
                 total_rounds += r
                 if flash:
                     break
-                drinks += 2
-                atk = 4  # +1 ATK if damaged
+                drinks += 3
+                atk = 4
 
         elif "Vermilion" in name:
             while True:
-                r, flash = gym_battle_once(4, 4)
+                r, flash = gym_battle_once(3, 4)
                 total_rounds += r
                 if flash:
                     break
-                drinks += 2
+                drinks += 2  # avg players behind
 
-    elif "Celadon" in name:
-        toxic_total = 0
-        while True:
-            r, flash = gym_battle_once(3, 7)
-            for i in range(r):
-                toxic_total += 1
+        elif "Celadon" in name:
+            toxic_total = 0
+            while True:
+                r, flash = gym_battle_once(3, 7)
+                for i in range(r):
+                    toxic_total += 1
+                    drinks += toxic_total
+                total_rounds += r
+                if flash:
+                    break
                 drinks += toxic_total
-            total_rounds += r
-            if flash:
-                break
-            drinks += 2
-            toxic_total = 0  # faint resets toxicity
+                toxic_total = 0
 
         elif "Fuchsia" in name:
             while True:
@@ -190,7 +185,7 @@ def estimate_tile_drinks(tile_idx, player_state):
 
     if tile_idx in GYMS:
         d, r = sample_gym(tile_idx)
-        return d, 0, r - 1, 0  # rounds - 1 = lost turns in gym
+        return d, 0, r - 1, 0
 
     drinks = 0
     extra_turns = 0
@@ -202,15 +197,18 @@ def estimate_tile_drinks(tile_idx, player_state):
         drinks = 10
     elif low == "pidgey":
         extra_turns = 1
-    elif low == "weedle":
-        drinks = 2
+    elif low == "pikachu":
+        drinks = 1
+        if random.random() < 0.3:
+            drinks += 2
+            lost_turns = 1
     elif low == "metapod":
-        drinks = 2
+        pass  # defensive buff, no drinks
     elif low == "super nerd":
         drinks = 2
         player_state["has_fossil"] = True
     elif low == "poke mart":
-        drinks = 3
+        drinks = 2
     elif "gary" in low:
         roll = random.randint(1, 6)
         drinks = (roll + 1) // 2 if "half" in text else roll
@@ -260,9 +258,13 @@ def estimate_tile_drinks(tile_idx, player_state):
         drinks = 2
     elif low == "porygon":
         drinks = 2
+    elif low == "lapras":
+        drinks = 0
     elif "team_rocket" in low:
         drinks = 6 if player_state.get("met_rocket") else 3
         player_state["met_rocket"] = True
+    elif low == "giovanni":
+        pass
     elif low == "tauros":
         drinks = 2
     elif low == "scyther":
@@ -273,13 +275,21 @@ def estimate_tile_drinks(tile_idx, player_state):
         drinks = 5
     elif low == "dewgong":
         drinks = 1
-    elif low == "goldduck":
+    elif low == "golduck":
         rolls = 1
         while random.randint(1, 6) % 2 == 0:
             rolls += 1
         drinks = rolls if rolls > 1 else 0
     elif low == "articuno":
-        lost_turns = 1
+        if random.random() < 0.5:
+            if random.randint(1, 6) % 2 == 1:
+                pass  # broke free
+            else:
+                lost_turns = 2
+                drinks = 6
+        else:
+            lost_turns = 1
+            drinks = 3
     elif "cinnabar lab" in header.lower() or low == "pokemon_lab":
         if player_state.get("has_fossil"):
             player_state["has_upgrade"] = True
@@ -292,7 +302,7 @@ def estimate_tile_drinks(tile_idx, player_state):
         drinks = 2
         move_back = 2
     elif low == "zapdos":
-        drinks = 3
+        drinks = 4
     elif low == "dragonite":
         lost_turns = 1
     elif low == "gyarados":
@@ -303,16 +313,32 @@ def estimate_tile_drinks(tile_idx, player_state):
     return drinks, extra_turns, lost_turns, move_back
 
 
-# Find forest boundaries
 FOREST_START = None
 FOREST_END = None
 for i, td in enumerate(tile_defs):
-    h = (td.get("header") or "").lower()
-    if "viridian" in h or "virdian" in h:
+    bg = td.get("background_color", "")
+    if bg == "viridian_forest":
         if FOREST_START is None:
             FOREST_START = i
-    if td.get("background_color", "") == "viridian_forest":
         FOREST_END = i
+
+SUPER_NERD_IDX = None
+for i, td in enumerate(tile_defs):
+    if td.get("name", "").lower() == "super nerd":
+        SUPER_NERD_IDX = i
+        break
+
+
+def forest_roll():
+    """Resolve a roll in the forest. Returns (move, got_lost)."""
+    while True:
+        roll = random.randint(1, 6)
+        if roll == 6:
+            return 0, True
+        elif roll == 5:
+            continue  # reroll
+        else:
+            return roll, False
 
 
 def simulate_game():
@@ -341,8 +367,21 @@ def simulate_game():
                 continue
 
             p["turns"] += 1
-            roll = random.randint(1, 6)
-            new_pos = p["pos"] + roll
+
+            in_forest = (FOREST_START is not None and FOREST_END is not None and
+                         FOREST_START <= p["pos"] <= FOREST_END)
+
+            if in_forest:
+                move, got_lost = forest_roll()
+                if got_lost:
+                    p["drinks"] += 1
+                    p["pos"] = FOREST_START
+                    p["tiles_landed"] += 1
+                    continue
+                new_pos = p["pos"] + move
+            else:
+                roll = random.randint(1, 6)
+                new_pos = p["pos"] + roll
 
             # Gym stops
             for gym_pos in sorted(GYMS):
@@ -351,19 +390,10 @@ def simulate_game():
                         new_pos = gym_pos
                         break
 
-            # Optional stops (40% chance)
-            for opt_pos in sorted(OPTIONAL_STOPS):
-                if p["pos"] < opt_pos < new_pos:
-                    if random.random() < 0.4:
-                        new_pos = opt_pos
-                        break
-
-            # Forest loop
-            if FOREST_START is not None and FOREST_END is not None:
-                if FOREST_START <= new_pos <= FOREST_END and new_pos != p["pos"]:
-                    if roll >= 5:
-                        p["drinks"] += 1
-                        new_pos = FOREST_START
+            # Super Nerd optional stop (40% chance)
+            if SUPER_NERD_IDX is not None and p["pos"] < SUPER_NERD_IDX < new_pos:
+                if random.random() < 0.4:
+                    new_pos = SUPER_NERD_IDX
 
             if new_pos >= NUM_TILES - 1:
                 new_pos = NUM_TILES - 1
@@ -399,7 +429,7 @@ def simulate_game():
     return total_rounds, players
 
 
-print(f"\nSimulating {NUM_GAMES:,} games...")
+print(f"\nSimulating {NUM_GAMES:,} games with {NUM_PLAYERS} players...")
 all_rounds = []
 all_drinks = []
 all_turns = []
@@ -466,23 +496,23 @@ sections = [
     ("Start -> Pewter Gym", 0, 9),
     ("Pewter -> Cerulean", 10, 16),
     ("Cerulean -> Vermilion", 17, 23),
-    ("Vermilion -> Celadon", 24, 38),
-    ("Celadon -> Saffron", 39, 48),
-    ("Saffron -> Fuchsia", 49, 54),
-    ("Fuchsia -> Cinnabar", 55, 61),
-    ("Cinnabar -> Viridian", 62, 66),
+    ("Vermilion -> Celadon", 24, 37),
+    ("Celadon -> Saffron", 38, 46),
+    ("Saffron -> Fuchsia", 47, 52),
+    ("Fuchsia -> Cinnabar", 53, 59),
+    ("Cinnabar -> Viridian", 60, 66),
     ("Viridian -> End", 67, NUM_TILES - 1),
 ]
 
-with open("rules/simulation.md", "w") as f:
-    f.write("# Game Simulation Results\n\n")
+with open("docs/simulation.md", "w") as f:
+    f.write("# Game Simulation Results (Final Version)\n\n")
     f.write(f"Simulated **{NUM_GAMES:,} games** with **{NUM_PLAYERS} players**. ")
     f.write("Social/physical mechanics (Haunter's no-laughing, Seafoam's no-floor-touching) are estimated conservatively.\n\n")
 
     f.write("## Key Numbers\n\n")
     f.write("| Metric | Value |\n")
     f.write("|--------|-------|\n")
-    f.write(f"| Average rounds to finish | **~{avg_rounds:.0f}** (10th-90th percentile: {p10_r}-{p90_r}) |\n")
+    f.write(f"| Average rounds to finish | **~{avg_rounds:.0f}** (10th-90th: {p10_r}-{p90_r}) |\n")
     f.write(f"| Turns per player | **~{avg_turns:.0f}** |\n")
     f.write(f"| Tiles landed on per player | **~{avg_tiles:.0f}** |\n")
     f.write(f"| Drinks per player (direct) | **~{avg_drinks:.0f} sips (~{avg_drinks/10:.1f} beers)** |\n")
@@ -514,13 +544,15 @@ with open("rules/simulation.md", "w") as f:
         res = gym_results[gi]
         ad = sum(d for d, _ in res) / len(res)
         ar = sum(r for _, r in res) / len(res)
-        f.write(f"| {tile_defs[gi].get('header', '')} | {ad:.1f} | {ar:.1f} |\n")
+        gname = tile_defs[gi].get('header', '')
+        if gname and gname != "Pokemon Master":
+            f.write(f"| {gname} | {ad:.1f} | {ar:.1f} |\n")
     f.write("\n")
 
     f.write("## Cinnabar Lab Upgrade Probability\n\n")
     f.write("| Step | Probability |\n")
     f.write("|------|------------|\n")
-    f.write(f"| Player gets a Fossil (lands on Super Nerd) | **{fossil_pct:.1f}%** |\n")
+    f.write(f"| Player gets a Fossil (stops at Super Nerd) | **{fossil_pct:.1f}%** |\n")
     f.write(f"| Player gets upgrade (Fossil + Cinnabar Lab) | **{upgrade_pct:.1f}%** |\n")
     f.write(f"| At least 1 of {NUM_PLAYERS} players gets upgrade | **{game_upgrade_pct:.1f}%** |\n")
     f.write("\n")
@@ -528,14 +560,14 @@ with open("rules/simulation.md", "w") as f:
     f.write("## Board Summary\n\n")
     f.write(f"- **Total tiles:** {NUM_TILES}\n")
     f.write(f"- **Gyms:** {len(GYMS)} (mandatory stops)\n")
-    f.write(f"- **Optional stops:** {len(OPTIONAL_STOPS)}\n")
     zone_counts = defaultdict(int)
     for z in ZONES.values():
         zone_counts[z] += 1
     f.write(f"- **Zones:** {', '.join(f'{z} ({c})' for z, c in sorted(zone_counts.items(), key=lambda x: -x[1]))}\n")
     f.write(f"- **Avg game length:** ~{avg_rounds:.0f} rounds\n")
+    f.write(f"- **Drink range:** {p10_d}-{p90_d} sips per player (80% of games)\n")
 
-print(f"\nDone! Results written to rules/simulation.md")
+print(f"\nDone! Results written to docs/simulation.md")
 print(f"  Rounds: {avg_rounds:.1f} avg ({p10_r}-{p90_r})")
 print(f"  Drinks/player: {avg_drinks:.1f} sips ({avg_drinks/10:.1f} beers)")
 print(f"  Turns/player: {avg_turns:.1f}")
