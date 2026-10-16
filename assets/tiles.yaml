@@ -1,8 +1,3 @@
-# Polygon: Er for mange gyms så blir mye rare greier
-# Forest: Trenger kanskje å gjøre lettere å komme igjennom?
-# Alakazam gym: må ha en annen flash
-# Må gjøre no med pacing - på slutten er det bare masse gyms, som ikke er drikke
-
 tiles:
   - name: Pallet Town
     header: "Pallet Town"
@@ -19,7 +14,7 @@ tiles:
     poke_api_image: "pokemon/pidgey"
 
   - name: pokeball
-    text: "You found a Pokeball! When encountering a pokemon, you may try to catch it by rolling 4-6 and use its move once later. Roll 1-3, ball is lost, and resolve the encounter normally."
+    text: "You found a Pokeball! When you meet a Pokemon, roll 4-6 to catch it: skip its effect, and use its move on any player later. Roll 1-3, ball is lost, and resolve the encounter normally."
     poke_api_image: "item/poke-ball"
     image_scale: 0.4
     image_margin_top: 30
@@ -53,13 +48,6 @@ tiles:
     poke_api_image: "pokemon/pikachu"
     background_color: "viridian_forest"
     image_margin_top: -50
-
-  # - name: Weedle
-  #   text: |
-  #     Weedle used Poison Sting!
-  #     Drink 2. Next time someone passes you, they must stop at whatever square you're on
-  #   poke_api_image: "pokemon/weedle"
-  #   background_color: "viridian_forest"
 
   - name: Metapod
     text: |
@@ -497,9 +485,6 @@ tiles:
       Have every player combine their drinks in a glass, and finish the drink!
     poke_api_image: pokemon/muk
     image_margin_top: -80
-  # - name: electrabuzz
-  #   text: "Electrabuzz used Thunder Punch!\nYou're paralyzed; miss your next turn"
-  #   poke_api_image: pokemon/electabuzz
 
   - name: seafoam_islands
     header: Seafoam Islands
@@ -665,35 +650,3 @@ tiles:
     text: "Throw your master ball and claim your victory! You truly are the very best!"
     poke_api_image: pokemon/mewtwo
     background_color: gym
-
-  # - name: scientist
-  #   text: "You meet a Scientist, and he lets you use his device.\nRoll a die.\nOptional: Move that many squares, but also drink that many"
-  #   background_color: "silph_co"
-  # Missing no
-  # Ha denne 4 steg forran siste i rock tunnel, som gjør at hvis du feks ruller 5, går du 5 bak, og
-  # - name: MissingNo
-  #   text: "A wild Missingno!\nThe game is glitching! Next turn, move backwards instead of forward"
-  #   poke_api_image: "pokemon/missingno" # Does not exist
-
-  # Ideas
-  #
-  # - name: scientist
-  #   text: "You meet a Scientist, and he lets you use his device.\nRoll a die.\nOptional: Move that many squares, but also drink that many"
-  #   background_color: "silph_co"
-
-  # - name: ditto
-  #   text: "Ditto used Transform!\nSelect a move from any Pokmon you've passed. You must decide within 60 seconds, or Ditto flees"
-  #   poke_api_image: "pokemon/ditto"
-  #
-  # - name: Alakazam
-  #   text: "Alakazam used Phsycic! Player to your left rolls a die. If you correctly guess the number on the die, new turn. Otherwise, drink 4"
-  #   poke_api_image: "pokemon/alakazam"
-  #   image_scale: 0.85
-  #
-  # Koffing/Weezing (Team Rocket
-  # staple)
-  #   Koffing used Smokescreen!
-  #   All players close their
-  #   eyes. You may move
-  #   someone's piece 1-2 squares
-  #    in secret.
